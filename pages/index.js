@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import {useAuth} from '../lib/auth'
+import {useAuth} from '@/lib/auth';
 import {Button, Code, Heading, Text} from "@chakra-ui/react";
 
 export default function Home() {

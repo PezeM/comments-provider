@@ -1,6 +1,6 @@
-import {AuthProvider} from '../lib/auth';
+import {AuthProvider} from '@/lib/auth';
 import {ChakraProvider} from "@chakra-ui/react";
-import {theme} from "../styles/theme";
+import {theme} from "@/styles/theme";
 
 function App({Component, pageProps}) {
     return (
