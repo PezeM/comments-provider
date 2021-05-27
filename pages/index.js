@@ -1,35 +1,30 @@
 import Head from 'next/head';
 import {useAuth} from '../lib/auth'
-import styles from '../styles/Home.module.css'
+import {Button, Code, Heading, Text} from "@chakra-ui/react";
 
 export default function Home() {
     const auth = useAuth();
 
     return (
-        <div className={styles.container}>
+        <div>
             <Head>
                 <title>Comments Provider</title>
             </Head>
 
-            <main className={styles.main}>
-                <h1 className={styles.title}>
+            <main>
+                <Heading>
                     Comments Provider Demo
-                </h1>
-
-                <p className={styles.description}>
-                    Get started by editing{' '}
-                    <code className={styles.code}>pages/index.js</code>
-                </p>
+                </Heading>
 
                 <div>
-                    <button onClick={() => auth.signIn()}>Sign In</button>
+                    <Button onClick={() => auth.signIn()}>Sign In</Button>
 
-                    <div>
-                        {auth?.user?.email}
-                    </div>
+                    <Text>
+                        Current user: <Code>{auth.user ? auth?.user?.email : 'None'}</Code>
+                    </Text>
 
                     {auth?.user && (
-                        <button onClick={() => auth.signOut()}>Sign Out</button>
+                        <Button onClick={() => auth.signOut()}>Sign Out</Button>
                     )}
                 </div>
 
