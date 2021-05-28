@@ -14,6 +14,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import { createSite } from '@/lib/database';
 
 export const AddSiteModal = () => {
   const initialRef = useRef();
@@ -22,6 +23,7 @@ export const AddSiteModal = () => {
 
   const onCreateSite = values => {
     console.log(values);
+    createSite(values);
     onClose();
   };
 
