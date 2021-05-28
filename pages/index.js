@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { useAuth } from '@/lib/auth';
-import { Button, Flex} from '@chakra-ui/react';
-import { LogoIcon } from '@/styles/icons';
+import { Button, Flex } from '@chakra-ui/react';
 
 export default function Home() {
   const auth = useAuth();
@@ -11,8 +10,6 @@ export default function Home() {
       <Head>
         <title>Comments Provider</title>
       </Head>
-
-      <LogoIcon color="black" boxSize={8} />
 
       {auth.user ? (
         <Button mt={4} variant="ghost" size="sm" onClick={() => auth.signOut()}>
