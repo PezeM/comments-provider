@@ -16,5 +16,8 @@
     "next": "10.x",
     "react": "17.x",
     "react-dom": "17.x"
+  },
+  "devDependencies": {
+    "prettier": "2.3.0"
   }
 }
