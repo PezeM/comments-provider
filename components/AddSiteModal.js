@@ -13,44 +13,59 @@ import {
   ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
 
 export const AddSiteModal = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { handleSubmit, register } = useForm();
 
-  const createSite = () => {
-
+  const onCreateSite = values => {
+    console.log(values);
+    onClose();
   };
 
   return (
     <>
-      <Button maxW={'200px'} fontWeight={'medium'} onClick={onOpen}>
-        Add first site
+      <Button fontWeight="medium" maxW="200px" onClick={onOpen}>
+        Add Your First Site
       </Button>
-
       <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader fontWeight={'medium'}>Add Site</ModalHeader>
+        <ModalContent as="form" onSubmit={handleSubmit(onCreateSite)}>
+          <ModalHeader fontWeight="bold">Add Site</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Name</FormLabel>
-              <Input ref={initialRef} placeholder="Site name" />
+              <Input
+                ref={initialRef}
+                placeholder="Site name"
+                name="site"
+                {...register('site', {
+                  required: 'Required',
+                })}
+              />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Link</FormLabel>
-              <Input placeholder="https://google.com" />
+              <Input
+                placeholder="https://website.com"
+                name="url"
+                {...register('url', {
+                  required: 'Required',
+                })}
+              />
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button onClick={onClose} mr={3} fontWeight={'medium'}>
+            <Button onClick={onClose} mr={3} fontWeight="medium">
               Cancel
             </Button>
-            <Button colorScheme="blue" fontWeight={'medium'} onClick={createSite}>
-              Save
+            <Button colorScheme={'blue'} fontWeight="medium" type="submit">
+              Create
             </Button>
           </ModalFooter>
         </ModalContent>
