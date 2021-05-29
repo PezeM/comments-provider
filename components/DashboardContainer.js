@@ -31,10 +31,12 @@ export const DashboardContainer = ({ children }) => {
           <Link>Sites</Link>
         </Stack>
         <Flex alignItems={'center'}>
-          <Button mr={4} variant={'ghost'} onClikc={() => signOut()}>
-            Log out
-          </Button>
-          <Avatar size={'sm'} src={user.photoUrl} />
+          {user && (
+            <Button mr={4} variant={'ghost'} onClikc={() => signOut()}>
+              Log out
+            </Button>
+          )}
+          <Avatar size={'sm'} src={user?.photoUrl} />
         </Flex>
       </Flex>
       <Flex backgroundColor={'gray.200'} p={8} height="100vh" direction="column" px={8}>
