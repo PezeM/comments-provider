@@ -17,7 +17,7 @@ export const EmptyDashboardState = () => {
         You haven't added any sites.
       </Heading>
       <Text mb={4}>Start, by adding site new site...</Text>
-      <AddSiteModal />
+      <AddSiteModal>Add Your First Site</AddSiteModal>
     </Flex>
   );
 };

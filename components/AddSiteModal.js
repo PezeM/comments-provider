@@ -17,18 +17,17 @@ import {
 import { useForm } from 'react-hook-form';
 import { createSite } from '@/lib/database';
 import { useAuth } from '@/lib/auth';
+import { mutate } from 'swr';
 
-export const AddSiteModal = () => {
+export const AddSiteModal = ({ children }) => {
   const initialRef = useRef();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { handleSubmit, register, reset } = useForm();
   const toast = useToast();
   const { user } = useAuth();
 
-  const onCreateSite = ({ name, url }) => {
-    console.log('here');
-
-    createSite({
+  const onCreateSite = async ({ name, url }) => {
+    await createSite({
       authordId: user.uid,
       createdAt: new Date().toISOString(),
       name,
@@ -45,12 +44,23 @@ export const AddSiteModal = () => {
 
     reset(undefined, { keepValues: false });
     onClose();
+    await mutate('/api/sites');
   };
 
   return (
     <>
-      <Button fontWeight="medium" maxW="200px" onClick={onOpen}>
-        Add Your First Site
+      <Button
+        backgroundColor={'gray.900'}
+        color={'white'}
+        fontWeight={'medium'}
+        _hover={{ bg: 'gray.700' }}
+        _active={{
+          bg: 'gray.800',
+          transform: 'scale(0.95)',
+        }}
+        onClick={onOpen}
+      >
+        {children}
       </Button>
       <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

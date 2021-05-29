@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Link, Skeleton } from '@chakra-ui/react';
 import { Table, Td, Th, Tr } from '@/components/Table';
+import { format, parseISO } from 'date-fns';
 
 export const SiteTable = ({ sites }) => {
   return (
@@ -22,7 +23,7 @@ export const SiteTable = ({ sites }) => {
             <Td>
               <Link>Live feedback</Link>
             </Td>
-            <Td>{site.createdAt}</Td>
+            <Td>{format(parseISO(site.createdAt), 'PPpp')}</Td>
           </Box>
         ))}
       </tbody>
