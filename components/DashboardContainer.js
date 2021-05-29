@@ -32,7 +32,7 @@ export const DashboardContainer = ({ children }) => {
         </Stack>
         <Flex alignItems={'center'}>
           {user && (
-            <Button mr={4} variant={'ghost'} onClikc={() => signOut()}>
+            <Button mr={4} variant={'ghost'} onClick={() => signOut()}>
               Log out
             </Button>
           )}
