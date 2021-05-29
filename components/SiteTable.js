@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Link, Skeleton } from '@chakra-ui/react';
+import { Box, Link} from '@chakra-ui/react';
 import { Table, Td, Th, Tr } from '@/components/Table';
 import { format, parseISO } from 'date-fns';
 

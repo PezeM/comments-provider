@@ -20,7 +20,6 @@ import { useAuth } from '@/lib/auth';
 import { mutate } from 'swr';
 
 export const AddSiteModal = ({ children }) => {
-  const initialRef = useRef();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { handleSubmit, register, reset } = useForm();
   const toast = useToast();
@@ -62,7 +61,7 @@ export const AddSiteModal = ({ children }) => {
       >
         {children}
       </Button>
-      <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent as="form" onSubmit={handleSubmit(onCreateSite)}>
           <ModalHeader fontWeight="bold">Add Site</ModalHeader>
@@ -71,7 +70,6 @@ export const AddSiteModal = ({ children }) => {
             <FormControl>
               <FormLabel>Name</FormLabel>
               <Input
-                ref={initialRef}
                 placeholder="Site name"
                 name="name"
                 {...register('name', {
