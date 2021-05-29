@@ -4,6 +4,7 @@ import { SiteTableSkeleton } from '@/components/Skeletons/SiteTableSkeleton';
 import { DashboardContainer } from '@/components/DashboardContainer';
 import { fetcher } from '@/utils/fetcher';
 import useSWR from 'swr';
+import { SiteTable } from '@/components/SiteTable';
 
 export default function Dashboard() {
   const auth = useAuth();
@@ -21,7 +22,7 @@ export default function Dashboard() {
 
   return (
     <DashboardContainer>
-      <EmptyDashboardState />
+      {data.sites ? <SiteTable sites={data.sites} /> : <EmptyDashboardState />}
     </DashboardContainer>
   );
 }

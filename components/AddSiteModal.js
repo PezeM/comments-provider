@@ -21,15 +21,17 @@ import { useAuth } from '@/lib/auth';
 export const AddSiteModal = () => {
   const initialRef = useRef();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, reset } = useForm();
   const toast = useToast();
-  const auth = useAuth();
+  const { user } = useAuth();
 
-  const onCreateSite = ({ site, url }) => {
+  const onCreateSite = ({ name, url }) => {
+    console.log('here');
+
     createSite({
-      authordId: auth.user.uid,
+      authordId: user.uid,
       createdAt: new Date().toISOString(),
-      site,
+      name,
       url,
     });
 
@@ -41,6 +43,7 @@ export const AddSiteModal = () => {
       isClosable: true,
     });
 
+    reset(undefined, { keepValues: false });
     onClose();
   };
 
@@ -60,8 +63,8 @@ export const AddSiteModal = () => {
               <Input
                 ref={initialRef}
                 placeholder="Site name"
-                name="site"
-                {...register('site', {
+                name="name"
+                {...register('name', {
                   required: 'Required',
                 })}
               />

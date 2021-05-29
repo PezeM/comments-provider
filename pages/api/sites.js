@@ -8,5 +8,5 @@ export default async (req, res) => {
     sites.push({ id: doc.id, ...doc.data() });
   });
 
-  res.status(200).send(sites);
+  res.status(200).send({ sites });
 };
