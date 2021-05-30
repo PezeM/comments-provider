@@ -27,7 +27,7 @@ export const AddSiteModal = ({ children }) => {
 
   const onCreateSite = async ({ name, url }) => {
     await createSite({
-      authordId: user.uid,
+      authorId: user.uid,
       createdAt: new Date().toISOString(),
       name,
       url,
