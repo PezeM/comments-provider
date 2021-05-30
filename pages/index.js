@@ -8,6 +8,15 @@ export default function Home() {
   return (
     <Flex as="main" direction="column" align="center" justify="center" h="100vh">
       <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                if(document.cookie && document.cookie.includes('comments-provider-auth')) {
+                    window.location.href = '/dashboard'
+                }
+            `,
+          }}
+        />
         <title>Comments Provider</title>
       </Head>
 
