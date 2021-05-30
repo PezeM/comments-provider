@@ -3,8 +3,8 @@ import { Feedback } from '@/components/Feedback/Feedback';
 import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { useAuth } from '@/lib/auth';
 import { useRouter } from 'next/router';
-import { useRef } from 'react';
-import {createFeedback} from "@/lib/database";
+import { useRef, useState } from 'react';
+import { createFeedback } from '@/lib/database';
 
 export async function getStaticProps(context) {
   const siteId = context.params.siteId;
@@ -37,6 +37,7 @@ export default function SiteFeedback({ initialFeedback }) {
   const { user } = useAuth();
   const router = useRouter();
   const inputRef = useRef(null);
+  const [allFeedbacks, setAllFeedbacks] = useState(initialFeedback);
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -51,6 +52,7 @@ export default function SiteFeedback({ initialFeedback }) {
       status: 'pending',
     };
 
+    setAllFeedbacks([newFeedback, ...allFeedbacks]);
     await createFeedback(newFeedback);
   };
 
@@ -72,7 +74,7 @@ export default function SiteFeedback({ initialFeedback }) {
         </FormControl>
       </Box>
 
-      {initialFeedback.map(feedback => {
+      {allFeedbacks.map(feedback => {
         return <Feedback key={feedback.id} {...feedback} />;
       })}
     </Box>
