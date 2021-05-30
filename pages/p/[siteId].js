@@ -8,17 +8,17 @@ import { createFeedback } from '@/lib/database';
 
 export async function getStaticProps(context) {
   const siteId = context.params.siteId;
-  const feedback = await getAllFeedback(siteId);
+  const { feedbacks } = await getAllFeedback(siteId);
 
   return {
     props: {
-      initialFeedback: feedback,
+      initialFeedback: feedbacks,
     },
   };
 }
 
 export async function getStaticPaths() {
-  const sites = await getAllSites();
+  const { sites } = await getAllSites();
   const paths = sites.map(site => {
     return {
       params: {
