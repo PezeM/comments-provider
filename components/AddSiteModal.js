@@ -43,7 +43,7 @@ export const AddSiteModal = ({ children }) => {
 
     reset(undefined, { keepValues: false });
     onClose();
-    await mutate('/api/sites');
+    await mutate(['/api/sites', user.token]);
   };
 
   return (
