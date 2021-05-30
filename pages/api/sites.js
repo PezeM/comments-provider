@@ -1,12 +1,7 @@
-import db from '@/lib/firebase-admin';
+import { getAllSites } from '@/lib/database-admin';
 
 export default async (req, res) => {
-  const data = await db.collection('sites').get();
-  const sites = [];
-
-  data.forEach(doc => {
-    sites.push({ id: doc.id, ...doc.data() });
-  });
+  const sites = await getAllSites();
 
   res.status(200).send({ sites });
 };
