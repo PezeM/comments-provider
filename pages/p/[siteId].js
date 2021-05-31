@@ -14,7 +14,7 @@ export async function getStaticProps(context) {
     props: {
       initialFeedback: feedbacks,
     },
-    revalidate: 1
+    revalidate: 1,
   };
 }
 
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -68,16 +68,23 @@ export default function SiteFeedback({ initialFeedback }) {
       <Box as={'form'} onSubmit={onSubmit}>
         <FormControl my={8}>
           <FormLabel htmlFor="comment">Comment</FormLabel>
-          <Input ref={inputRef} id="comment" colorScheme={"red"} placeholder="Leave a comment" />
-          <Button mt={4} type="submit" fontWeight="medium" colorScheme={"blue"}>
+          <Input ref={inputRef} id="comment" colorScheme={'red'} placeholder="Leave a comment" />
+          <Button
+            mt={4}
+            type="submit"
+            fontWeight="medium"
+            colorScheme={'blue'}
+            isDisabled={router.isFallback}
+          >
             Add comment
           </Button>
         </FormControl>
       </Box>
 
-      {allFeedbacks.map(feedback => {
-        return <Feedback key={feedback.id} {...feedback} />;
-      })}
+      {allFeedbacks &&
+        allFeedbacks.map(feedback => {
+          return <Feedback key={feedback.id} {...feedback} />;
+        })}
     </Box>
   );
 }
