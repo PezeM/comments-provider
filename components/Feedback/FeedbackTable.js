@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, Code, IconButton, Switch } from '@chakra-ui/react';
+import { Box, Code, Switch } from '@chakra-ui/react';
 import { Table, Td, Th, Tr } from '@/components/Table';
-import { DeleteIcon } from '@chakra-ui/icons';
+import { RemoveDialog } from '@/components/RemoveDialog';
 
 export const FeedbackTable = ({ feedbacks }) => {
   return (
@@ -27,12 +27,7 @@ export const FeedbackTable = ({ feedbacks }) => {
               <Switch colorScheme="green" defaultIsChecked={feedback.status === 'active'} />
             </Td>
             <Td>
-              <IconButton
-                variant="ghost"
-                colorScheme="blue"
-                aria-label="Delete feedback"
-                icon={<DeleteIcon />}
-              />
+              <RemoveDialog feedbackId={feedback.id} />
             </Td>
           </Box>
         ))}
