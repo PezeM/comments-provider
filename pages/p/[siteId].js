@@ -53,6 +53,7 @@ export default function SiteFeedback({ initialFeedback }) {
       status: 'pending',
     };
 
+    inputRef.current.value = '';
     setAllFeedbacks([newFeedback, ...allFeedbacks]);
     await createFeedback(newFeedback);
   };
