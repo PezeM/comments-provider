@@ -22,16 +22,41 @@ export default function Home() {
         <title>Comments Provider</title>
       </Head>
 
-      {auth.user && (
-        <Button as={'a'} mt={4} variant="ghost" size="sm" href={'/dashboard'}>
-          View dashboard
-        </Button>
-      )}
-
       {auth.user ? (
-        <Button mt={4} size="sm" onClick={() => auth.signOut()}>
-          Sign Out
-        </Button>
+        <>
+          <Button
+            mt={4}
+            size="lg"
+            href={'/dashboard'}
+            as={'a'}
+            backgroundColor={'gray.900'}
+            color={'white'}
+            fontWeight={'medium'}
+            _hover={{ bg: 'gray.700' }}
+            _active={{
+              bg: 'gray.800',
+              transform: 'scale(0.95)',
+            }}
+          >
+            View dashboard
+          </Button>
+          <Button
+            mt={4}
+            size="lg"
+            onClick={() => auth.signOut()}
+            backgroundColor={'white'}
+            variant={'outline'}
+            color={'gray.900'}
+            fontWeight={'medium'}
+            _hover={{ bg: 'gray.100' }}
+            _active={{
+                bg: 'gray.100',
+                transform: 'scale(0.95)',
+            }}
+          >
+            Sign Out
+          </Button>
+        </>
       ) : (
         <Stack>
           <Button
