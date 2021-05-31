@@ -68,8 +68,8 @@ export default function SiteFeedback({ initialFeedback }) {
       <Box as={'form'} onSubmit={onSubmit}>
         <FormControl my={8}>
           <FormLabel htmlFor="comment">Comment</FormLabel>
-          <Input ref={inputRef} id="comment" placeholder="Leave a comment" />
-          <Button mt={4} type="submit" fontWeight="medium">
+          <Input ref={inputRef} id="comment" colorScheme={"red"} placeholder="Leave a comment" />
+          <Button mt={4} type="submit" fontWeight="medium" colorScheme={"blue"}>
             Add comment
           </Button>
         </FormControl>
