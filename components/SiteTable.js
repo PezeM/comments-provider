@@ -23,7 +23,9 @@ export const SiteTable = ({ sites }) => {
             <Td>{site.url}</Td>
             <Td>
               <NextLink href="/p/[siteId]" as={`/p/${site.id}`} passHref>
-                <Link>Live feedback</Link>
+                <Link color="blue.500" fontWeight="medium">
+                  Live feedback
+                </Link>
               </NextLink>
             </Td>
             <Td>{format(parseISO(site.createdAt), 'PPpp')}</Td>
