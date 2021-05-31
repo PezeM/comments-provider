@@ -38,7 +38,7 @@ export default function Home() {
             leftIcon={<GithubIcon />}
             mt={4}
             size="lg"
-            onClick={() => auth.signIn()}
+            onClick={() => auth.signInWithGithub()}
             backgroundColor={'gray.900'}
             color={'white'}
             fontWeight={'medium'}
@@ -55,13 +55,14 @@ export default function Home() {
             leftIcon={<GoogleIcon />}
             mt={4}
             size="lg"
-            onClick={() => auth.signIn()}
-            backgroundColor={'gray.900'}
-            color={'white'}
+            onClick={() => auth.signInWithGoogle()}
+            backgroundColor={'white'}
+            variant={'outline'}
+            color={'gray.900'}
             fontWeight={'medium'}
-            _hover={{ bg: 'gray.700' }}
+            _hover={{ bg: 'gray.100' }}
             _active={{
-              bg: 'gray.800',
+              bg: 'gray.100',
               transform: 'scale(0.95)',
             }}
           >
