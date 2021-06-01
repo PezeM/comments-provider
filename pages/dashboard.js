@@ -6,10 +6,12 @@ import { fetcher } from '@/utils/fetcher';
 import useSWR from 'swr';
 import { SiteTable } from '@/components/SiteTable';
 import { SiteTableHeader } from '@/components/SiteTableHeader';
+import { UpgradeRoleDashboardState } from '@/components/UpgradeRoleDashboardState';
 
 export default function Dashboard() {
   const { user } = useAuth();
   const { data } = useSWR(user ? ['/api/sites', user.token] : null, fetcher);
+  const isPaidAccount = user?.stripeRole;
 
   if (!data) {
     return (
@@ -20,10 +22,21 @@ export default function Dashboard() {
     );
   }
 
+  if (data.sites.length) {
+    return (
+      <DashboardContainer>
+        <SiteTableHeader />
+        <SiteTable sites={data.sites} />
+      </DashboardContainer>
+    );
+  }
+
+  console.log(user.stripeRole);
+
   return (
     <DashboardContainer>
-      <SiteTableHeader />
-      {data.sites.length ? <SiteTable sites={data.sites} /> : <EmptyDashboardState />}
+      <SiteTableHeader isPaidAccount={isPaidAccount} />
+      {isPaidAccount ? <EmptyDashboardState /> : <UpgradeRoleDashboardState />}
     </DashboardContainer>
   );
 }

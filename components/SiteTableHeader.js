@@ -2,7 +2,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading } from '@chak
 import { AddSiteModal } from '@/components/AddSiteModal';
 import React from 'react';
 
-export const SiteTableHeader = () => {
+export const SiteTableHeader = ({ isPaidAccount }) => {
   return (
     <>
       <Breadcrumb>
@@ -13,7 +13,7 @@ export const SiteTableHeader = () => {
 
       <Flex justifyContent="space-between">
         <Heading mb={8}>My sites</Heading>
-        <AddSiteModal>+ Add Site</AddSiteModal>
+        {isPaidAccount && <AddSiteModal>+ Add Site</AddSiteModal>}
       </Flex>
     </>
   );
