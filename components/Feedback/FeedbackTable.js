@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box, Code, Switch } from '@chakra-ui/react';
-import { Table, Td, Th, Tr } from '@/components/Table';
-import { RemoveDialog } from '@/components/RemoveDialog';
+import { Table, Th, Tr } from '@/components/Table';
+import { FeedbackRow } from '@/components/Feedback/FeedbackRow';
 
 export const FeedbackTable = ({ feedbacks }) => {
   return (
@@ -17,19 +16,7 @@ export const FeedbackTable = ({ feedbacks }) => {
       </thead>
       <tbody>
         {feedbacks.map(feedback => (
-          <Box as="tr" key={feedback.id}>
-            <Td fontWeight={'medium'}>{feedback.author}</Td>
-            <Td>{feedback.text}</Td>
-            <Td>
-              <Code>{`/`}</Code>
-            </Td>
-            <Td>
-              <Switch colorScheme="green" defaultIsChecked={feedback.status === 'active'} />
-            </Td>
-            <Td>
-              <RemoveDialog feedbackId={feedback.id} />
-            </Td>
-          </Box>
+          <FeedbackRow feedback={feedback} key={feedback.id} />
         ))}
       </tbody>
     </Table>
