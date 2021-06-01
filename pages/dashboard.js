@@ -26,13 +26,11 @@ function Dashboard() {
   if (data.sites.length) {
     return (
       <DashboardContainer>
-        <SiteTableHeader />
+        <SiteTableHeader isPaidAccount={isPaidAccount} />
         <SiteTable sites={data.sites} />
       </DashboardContainer>
     );
   }
-
-  console.log(user.stripeRole);
 
   return (
     <DashboardContainer>
