@@ -2,12 +2,19 @@ import { Box, Code, Switch } from '@chakra-ui/react';
 import { Td } from '@/components/Table';
 import { RemoveDialog } from '@/components/RemoveDialog';
 import React, { useState } from 'react';
+import { updateFeedback } from '@/lib/database';
+import { mutate } from 'swr';
+import { useAuth } from '@/lib/auth';
 
 export const FeedbackRow = ({ feedback }) => {
+  const { user } = useAuth();
   const [isChecked, setIsChecked] = useState(feedback.status === 'active');
 
-  const onFeedbackToggle = e => {
+  const onFeedbackToggle = async () => {
     setIsChecked(!isChecked);
+    await updateFeedback(feedback.id, { status: !isChecked ? 'active' : 'pending' });
+    // For revalidating the cache
+    await mutate(['/api/feedback', user.token]);
   };
 
   return (
