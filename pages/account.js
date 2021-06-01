@@ -4,8 +4,9 @@ import { DashboardContainer } from '@/components/DashboardContainer';
 import { Avatar, Button, Flex, Heading, Text } from '@chakra-ui/react';
 import { FeedbackUsage } from '@/components/Account/FeedbackUsage';
 import { SettingsTable } from '@/components/Account/SettingsTable';
+import { Page } from '@/components/Page';
 
-export default function Account() {
+function Account() {
   const { user, signOut } = useAuth();
   const [isBillingLoading, setBillingLoading] = useState(false);
 
@@ -20,8 +21,8 @@ export default function Account() {
         <SettingsTable stripeRole={user?.stripeRole}>
           <FeedbackUsage />
           <Text my={4}>
-            Comments Provider uses Stripe to manage your subscriptions and payments.
-            This site is an demo site and stripe is currently disabled.
+            Comments Provider uses Stripe to manage your subscriptions and payments. This site is an
+            demo site and stripe is currently disabled.
           </Text>
           <Flex justify="flex-end">
             <Button variant="ghost" ml={4} onClick={() => signOut()}>
@@ -49,5 +50,13 @@ export default function Account() {
         </SettingsTable>
       </Flex>
     </DashboardContainer>
+  );
+}
+
+export default function AccountPage() {
+  return (
+    <Page name={'Account'} path={'/account'}>
+      <Account />
+    </Page>
   );
 }

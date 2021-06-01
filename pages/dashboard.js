@@ -7,8 +7,9 @@ import useSWR from 'swr';
 import { SiteTable } from '@/components/SiteTable';
 import { SiteTableHeader } from '@/components/SiteTableHeader';
 import { UpgradeRoleDashboardState } from '@/components/UpgradeRoleDashboardState';
+import { Page } from '@/components/Page';
 
-export default function Dashboard() {
+function Dashboard() {
   const { user } = useAuth();
   const { data } = useSWR(user ? ['/api/sites', user.token] : null, fetcher);
   const isPaidAccount = user?.stripeRole;
@@ -38,5 +39,13 @@ export default function Dashboard() {
       <SiteTableHeader isPaidAccount={isPaidAccount} />
       {isPaidAccount ? <EmptyDashboardState /> : <UpgradeRoleDashboardState />}
     </DashboardContainer>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <Page name={'Dashboard'} path={'/dashboard'}>
+      <Dashboard />
+    </Page>
   );
 }
