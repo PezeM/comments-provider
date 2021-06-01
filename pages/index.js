@@ -37,7 +37,6 @@ export default function Home({ allFeedback }) {
             `,
               }}
             />
-            <title>Comments Provider</title>
           </Head>
           <Center>
             <LogoIcon color="black" boxSize={8} mr={8} />
