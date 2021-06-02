@@ -1,27 +1,29 @@
 import Head from 'next/head';
 import { useAuth } from '@/lib/auth';
-import { Box, Button, Center, Flex, Stack, Text } from '@chakra-ui/react';
-import { GithubIcon, GoogleIcon, LogoIcon } from '@/styles/icons';
+import { Box, Button, Center, Flex, Text } from '@chakra-ui/react';
+import { LogoIcon } from '@/styles/icons';
 import React from 'react';
 import { Feedback } from '@/components/Feedback/Feedback';
 import { FeedbackLink } from '@/components/Feedback/FeedbackLink';
-import { getAllFeedback } from '@/lib/database-admin';
+import { getAllFeedback, getSite } from '@/lib/database-admin';
 import { LoginButtons } from '@/components/LoginButtons';
 
 const SITE_ID = '7B1tCoGiaWrranqFEZvd';
 
 export async function getStaticProps(context) {
   const { feedbacks } = await getAllFeedback(SITE_ID);
+  const { site } = await getSite(SITE_ID);
 
   return {
     props: {
       allFeedback: feedbacks,
+      site,
     },
     revalidate: 1,
   };
 }
 
-export default function Home({ allFeedback }) {
+export default function Home({ allFeedback, site }) {
   const auth = useAuth();
 
   return (
@@ -101,9 +103,14 @@ export default function Home({ allFeedback }) {
         mt={12}
         backgroundColor={'white'}
       >
-        <FeedbackLink siteId={SITE_ID} />
-        {allFeedback.map(feedback => (
-          <Feedback key={feedback.id} {...feedback} />
+        <FeedbackLink paths={[SITE_ID]} />
+        {allFeedback.map((feedback, index) => (
+          <Feedback
+            key={feedback.id}
+            settings={site?.settings}
+            isLast={index === allFeedback.length - 1}
+            {...feedback}
+          />
         ))}
       </Box>
     </>
