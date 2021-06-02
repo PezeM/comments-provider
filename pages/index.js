@@ -90,7 +90,7 @@ export default function Home({ allFeedback, site }) {
               </Button>
             </>
           ) : (
-            <LoginButtons />
+            <LoginButtons margin={"0 auto"} />
           )}
         </Flex>
       </Box>
