@@ -42,7 +42,7 @@ export async function getStaticPaths() {
 export default function FeedbackPage({ initialFeedback, site }) {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const inputEl = useRef(null);
+  const inputRef = useRef(null);
   const [allFeedback, setAllFeedback] = useState(initialFeedback);
 
   const onSubmit = e => {
@@ -52,13 +52,13 @@ export default function FeedbackPage({ initialFeedback, site }) {
       author: user.name,
       authorId: user.uid,
       siteId: router.query.siteId,
-      text: inputEl.current.value,
+      text: inputRef.current.value,
       createdAt: new Date().toISOString(),
       provider: user.provider,
       status: 'pending',
     };
 
-    inputEl.current.value = '';
+    inputRef.current.value = '';
     setAllFeedback([newFeedback, ...allFeedback]);
     createFeedback(newFeedback);
   };
@@ -78,7 +78,7 @@ export default function FeedbackPage({ initialFeedback, site }) {
           transform: 'scale(0.95)',
         }}
       >
-        Leave Feedback
+        Add comment
       </Button>
     ) : (
       <LoginButtons />
@@ -88,10 +88,22 @@ export default function FeedbackPage({ initialFeedback, site }) {
     <DashboardContainer>
       <SiteHeader siteName={site?.name} />
 
-      <Box display="flex" mx={4} flexDirection="column" width="full" maxWidth="700px">
+      <Box
+        display="flex"
+        mx={4}
+        flexDirection="column"
+        width="full"
+        maxWidth="700px"
+        margin="0 auto"
+      >
         <Box as="form" onSubmit={onSubmit}>
           <FormControl mb={8}>
-            <Textarea ref={inputEl} id="comment" placeholder="Leave a comment" h="100px" />
+            <Textarea
+              ref={inputRef}
+              id="comment"
+              placeholder="Leave a comment"
+              minHeight={'100px'}
+            />
             {!loading && <LoginOrLeaveFeedback />}
           </FormControl>
         </Box>
