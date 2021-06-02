@@ -92,7 +92,7 @@ export default function FeedbackPage({ initialFeedback, site }) {
 
   return (
     <DashboardContainer>
-      <SiteHeader siteName={site?.name} site={site} siteId={siteId} route={route} />
+      <SiteHeader isSiteOwner={true} site={site} siteId={siteId} route={route} />
 
       <Box
         display="flex"
