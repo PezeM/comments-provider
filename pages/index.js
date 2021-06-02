@@ -6,6 +6,7 @@ import React from 'react';
 import { Feedback } from '@/components/Feedback/Feedback';
 import { FeedbackLink } from '@/components/Feedback/FeedbackLink';
 import { getAllFeedback } from '@/lib/database-admin';
+import { LoginButtons } from '@/components/LoginButtons';
 
 const SITE_ID = '7B1tCoGiaWrranqFEZvd';
 
@@ -32,7 +33,7 @@ export default function Home({ allFeedback }) {
               dangerouslySetInnerHTML={{
                 __html: `
               if (document.cookie && document.cookie.includes('comments-provider-auth')) {
-                window.location.href = "/dashboard"
+                window.location.href = "/sites"
               }
             `,
               }}
@@ -56,7 +57,7 @@ export default function Home({ allFeedback }) {
               <Button
                 mt={4}
                 size="lg"
-                href={'/dashboard'}
+                href={'/sites'}
                 as={'a'}
                 backgroundColor={'gray.900'}
                 color={'white'}
@@ -87,42 +88,7 @@ export default function Home({ allFeedback }) {
               </Button>
             </>
           ) : (
-            <Stack>
-              <Button
-                leftIcon={<GithubIcon />}
-                mt={4}
-                size="lg"
-                onClick={() => auth.signInWithGithub()}
-                backgroundColor={'gray.900'}
-                color={'white'}
-                fontWeight={'medium'}
-                _hover={{ bg: 'gray.700' }}
-                _active={{
-                  bg: 'gray.800',
-                  transform: 'scale(0.95)',
-                }}
-              >
-                Sign in with GitHub
-              </Button>
-
-              <Button
-                leftIcon={<GoogleIcon />}
-                mt={4}
-                size="lg"
-                onClick={() => auth.signInWithGoogle()}
-                backgroundColor={'white'}
-                variant={'outline'}
-                color={'gray.900'}
-                fontWeight={'medium'}
-                _hover={{ bg: 'gray.100' }}
-                _active={{
-                  bg: 'gray.100',
-                  transform: 'scale(0.95)',
-                }}
-              >
-                Sign in with Google
-              </Button>
-            </Stack>
+            <LoginButtons />
           )}
         </Flex>
       </Box>

@@ -25,7 +25,7 @@ export const DashboardContainer = ({ children }) => {
             <NextLink href={'/'} passHref>
               <LogoIcon color="black" boxSize={6} mr={8} />
             </NextLink>
-            <NextLink href={'/dashboard'} passHref>
+            <NextLink href={'/sites'} passHref>
               <Link mr={4}>Sites</Link>
             </NextLink>
             <NextLink href={'/feedback'} passHref>

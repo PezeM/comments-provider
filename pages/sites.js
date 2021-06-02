@@ -9,7 +9,7 @@ import { SiteTableHeader } from '@/components/SiteTableHeader';
 import { UpgradeRoleDashboardState } from '@/components/UpgradeRoleDashboardState';
 import { Page } from '@/components/Page';
 
-function Dashboard() {
+function Sites() {
   const { user } = useAuth();
   const { data } = useSWR(user ? ['/api/sites', user.token] : null, fetcher);
   const isPaidAccount = user?.stripeRole;
@@ -40,10 +40,10 @@ function Dashboard() {
   );
 }
 
-export default function DashboardPage() {
+export default function SitesPage() {
   return (
-    <Page name={'Dashboard'} path={'/dashboard'}>
-      <Dashboard />
+    <Page name={'Sites'} path={'/sites'}>
+      <Sites />
     </Page>
   );
 }

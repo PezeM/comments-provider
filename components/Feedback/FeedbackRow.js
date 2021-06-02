@@ -22,7 +22,7 @@ export const FeedbackRow = ({ feedback }) => {
       <Td fontWeight={'medium'}>{feedback.author}</Td>
       <Td>{feedback.text}</Td>
       <Td>
-        <Code>{`/`}</Code>
+        <Code>{feedback.route ?? `/`}</Code>
       </Td>
       <Td>
         <Switch colorScheme="green" isChecked={isChecked} onChange={onFeedbackToggle} />
