@@ -42,6 +42,8 @@ export async function getStaticPaths() {
 export default function FeedbackPage({ initialFeedback, site }) {
   const { user, loading } = useAuth();
   const router = useRouter();
+  console.log(router.query);
+
   const inputRef = useRef(null);
   const [allFeedback, setAllFeedback] = useState(initialFeedback);
   const [siteId, route] = router.query.site;
