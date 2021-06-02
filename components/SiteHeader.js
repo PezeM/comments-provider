@@ -1,6 +1,7 @@
 import React from 'react';
 import NextLink from 'next/link';
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading } from '@chakra-ui/react';
+import { EditSiteModal } from '@/components/EditSiteModal';
 
 export const SiteHeader = ({ isSiteOwner, site, siteId, route }) => {
   const siteName = site?.name;
@@ -28,7 +29,11 @@ export const SiteHeader = ({ isSiteOwner, site, siteId, route }) => {
       </Breadcrumb>
       <Flex justifyContent="space-between">
         <Heading mb={8}>{siteName || '-'}</Heading>
-        {isSiteOwner && 'Edit Site'}
+        {isSiteOwner && (
+          <EditSiteModal settings={site?.settings} siteId={siteId}>
+            Edit site
+          </EditSiteModal>
+        )}
       </Flex>
     </Box>
   );
