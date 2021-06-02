@@ -1,6 +1,20 @@
 import React from 'react';
 import { format, parseISO } from 'date-fns';
 import { Box, Divider, Flex, Heading, Text } from '@chakra-ui/react';
+import { GithubIcon, GoogleIcon } from '@/styles/icons';
+
+const GetProviderLogo = provider => {
+  const link = provider.slice(0, -4);
+
+  switch (link) {
+    case 'github':
+      return <GithubIcon boxSize={4} ml={2} />;
+    case 'google':
+      return <GoogleIcon boxSize={4} ml={2} />;
+    default:
+      return undefined;
+  }
+};
 
 export const Feedback = ({ author, text, createdAt, provider, isLast, settings }) => {
   return (
@@ -9,7 +23,7 @@ export const Feedback = ({ author, text, createdAt, provider, isLast, settings }
         <Heading size="sm" as="h3" mb={0} color="gray.900" fontWeight="medium">
           {author}
         </Heading>
-        {settings?.icons && provider}
+        {GetProviderLogo(provider)}
       </Flex>
       {settings?.timestamp && (
         <Text color="gray.500" mb={4} fontSize="xs">
