@@ -38,8 +38,8 @@ export const EditSiteModal = ({ settings, siteId, children }) => {
       isClosable: true,
     });
 
-    onClose();
     await mutate(['/api/sites', user.token]);
+    onClose();
   };
 
   return (
@@ -67,7 +67,6 @@ export const EditSiteModal = ({ settings, siteId, children }) => {
           <ModalBody pb={6}>
             <FormControl>
               <Switch
-                key={settings?.timestamp}
                 name="timestamp"
                 color="green"
                 defaultIsChecked={settings?.timestamp}
@@ -79,7 +78,6 @@ export const EditSiteModal = ({ settings, siteId, children }) => {
             </FormControl>
             <FormControl>
               <Switch
-                key={settings?.icons}
                 name="icons"
                 color="green"
                 defaultIsChecked={settings?.icons}
@@ -91,7 +89,6 @@ export const EditSiteModal = ({ settings, siteId, children }) => {
             </FormControl>
             <FormControl>
               <Switch
-                key={settings?.ratings}
                 name="ratings"
                 color="green"
                 defaultIsChecked={settings?.ratings}

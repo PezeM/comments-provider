@@ -23,7 +23,7 @@ export const Feedback = ({ author, text, createdAt, provider, isLast, settings }
         <Heading size="sm" as="h3" mb={0} color="gray.900" fontWeight="medium">
           {author}
         </Heading>
-        {GetProviderLogo(provider)}
+        {settings?.icons && GetProviderLogo(provider)}
       </Flex>
       {settings?.timestamp && (
         <Text color="gray.500" mb={4} fontSize="xs">
