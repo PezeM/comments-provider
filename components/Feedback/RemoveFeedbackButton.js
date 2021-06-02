@@ -14,7 +14,7 @@ import { deleteFeedback } from '@/lib/database';
 import { mutate } from 'swr';
 import { useAuth } from '@/lib/auth';
 
-export const RemoveDialog = ({ feedbackId }) => {
+export const RemoveFeedbackButton = ({ feedbackId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const cancelRef = useRef();
   const { user } = useAuth();

@@ -1,6 +1,6 @@
 import { Box, Code, Switch } from '@chakra-ui/react';
 import { Td } from '@/components/Table';
-import { RemoveDialog } from '@/components/RemoveDialog';
+import { RemoveFeedbackButton } from '@/components/Feedback/RemoveFeedbackButton';
 import React, { useState } from 'react';
 import { updateFeedback } from '@/lib/database';
 import { mutate } from 'swr';
@@ -28,7 +28,7 @@ export const FeedbackRow = ({ feedback }) => {
         <Switch colorScheme="green" isChecked={isChecked} onChange={onFeedbackToggle} />
       </Td>
       <Td>
-        <RemoveDialog feedbackId={feedback.id} />
+        <RemoveFeedbackButton feedbackId={feedback.id} />
       </Td>
     </Box>
   );
