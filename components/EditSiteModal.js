@@ -21,7 +21,6 @@ import { updateSite } from '@/lib/database';
 
 export const EditSiteModal = ({ settings, siteId, children }) => {
   const toast = useToast();
-  const { user } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { handleSubmit, register } = useForm();
 
@@ -38,7 +37,7 @@ export const EditSiteModal = ({ settings, siteId, children }) => {
       isClosable: true,
     });
 
-    await mutate(['/api/sites', user.token]);
+    await mutate(`/api/sites/${siteId}`);
     onClose();
   };
 
