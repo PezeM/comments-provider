@@ -1,5 +1,5 @@
 import { auth } from '@/lib/firebase-admin';
-import {getUserFeedback} from "@/lib/database-admin";
+import { getUserFeedback } from '@/lib/database-admin';
 
 export default async (req, res) => {
   try {
