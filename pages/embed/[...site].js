@@ -3,6 +3,7 @@ import { getAllFeedback, getAllSites, getSite } from '@/lib/database-admin';
 import { Box } from '@chakra-ui/react';
 import { Feedback } from '@/components/Feedback/Feedback';
 import { FeedbackLink } from '@/components/Feedback/FeedbackLink';
+import 'iframe-resizer/js/iframeResizer.contentWindow';
 
 export async function getStaticProps(context) {
   const [siteId, route] = context.params.site;
