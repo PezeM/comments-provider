@@ -31,7 +31,7 @@ function MyFeedback() {
 
 export default function MyFeedbackPage() {
   return (
-    <Page name={'My Feedback'} path={'/feedback'}>
+    <Page name={'All Feedback'} path={'/feedback'}>
       <MyFeedback />
     </Page>
   );

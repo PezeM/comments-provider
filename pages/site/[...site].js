@@ -1,62 +1,36 @@
 import { createFeedback } from '@/lib/database';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth';
-import { getAllFeedback, getAllSites, getSite } from '@/lib/database-admin';
 import { Feedback } from '@/components/Feedback/Feedback';
 import { Box, Button, FormControl, Textarea } from '@chakra-ui/react';
 import { SiteHeader } from '@/components/SiteHeader';
 import { DashboardContainer } from '@/components/DashboardContainer';
 import { LoginButtons } from '@/components/LoginButtons';
+import useSWR, { mutate } from 'swr';
+import { fetcher } from '@/utils/fetcher';
 
-export async function getStaticProps(context) {
-  const [siteId, route] = context.params.site;
-  const { feedbacks } = await getAllFeedback(siteId, route);
-  const { site } = await getSite(siteId);
-
-  return {
-    props: {
-      initialFeedback: feedbacks,
-      site,
-    },
-    revalidate: 1,
-  };
-}
-
-export async function getStaticPaths() {
-  const { sites } = await getAllSites();
-  const paths = sites.map(site => {
-    return {
-      params: {
-        site: [site.id.toString()],
-      },
-    };
-  });
-
-  return {
-    paths,
-    fallback: true,
-  };
-}
-
-export default function FeedbackPage({ initialFeedback, site }) {
+export default function FeedbackPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
-  console.log(router.query);
-
   const inputRef = useRef(null);
-  const [allFeedback, setAllFeedback] = useState(initialFeedback);
-  const [siteId, route] = router.query.site;
+  const siteAndRoute = router.query?.site;
+  const siteId = siteAndRoute ? siteAndRoute[0] : null;
+  const route = siteAndRoute ? siteAndRoute[1] : null;
+  const feedbackApi = route ? `/api/feedback/${siteId}/${route}` : `/api/feedback/${siteId}`;
 
-  useEffect(() => {
-    setAllFeedback(initialFeedback);
-  }, [initialFeedback]);
+  const { data: siteData } = useSWR(`/api/site/${siteId}`, fetcher);
+  const { data: feedbackData } = useSWR(feedbackApi, fetcher);
 
-  const onSubmit = e => {
+  const site = siteData?.site;
+  const allFeedback = feedbackData?.feedback;
+
+  const onSubmit = async e => {
     e.preventDefault();
 
     const newFeedback = {
       siteId,
+      siteAuthorId: site.authorId,
       route: route ?? '/',
       author: user.name,
       authorId: user.uid,
@@ -67,15 +41,21 @@ export default function FeedbackPage({ initialFeedback, site }) {
     };
 
     inputRef.current.value = '';
-    setAllFeedback([newFeedback, ...allFeedback]);
-    createFeedback(newFeedback);
+    await createFeedback(newFeedback);
+    await mutate(
+      feedbackApi,
+      async data => ({
+        feedback: [newFeedback, ...data.feedback],
+      }),
+      false,
+    );
   };
 
   const LoginOrLeaveFeedback = () =>
     user ? (
       <Button
         type="submit"
-        isDisabled={router.isFallback}
+        isDisabled={!siteData || !feedbackData}
         backgroundColor="gray.900"
         color="white"
         fontWeight="medium"
@@ -94,7 +74,12 @@ export default function FeedbackPage({ initialFeedback, site }) {
 
   return (
     <DashboardContainer>
-      <SiteHeader isSiteOwner={true} site={site} siteId={siteId} route={route} />
+      <SiteHeader
+        isSiteOwner={site?.authorId === user?.uid}
+        site={site}
+        siteId={siteId}
+        route={route}
+      />
 
       <Box
         display="flex"
@@ -110,6 +95,7 @@ export default function FeedbackPage({ initialFeedback, site }) {
               ref={inputRef}
               id="comment"
               placeholder="Leave a comment"
+              isDisabled={!user}
               minHeight={'100px'}
             />
             {!loading && <LoginOrLeaveFeedback />}
