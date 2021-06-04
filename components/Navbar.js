@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Flex, Link, Tooltip } from '@chakra-ui/react';
+import { Button, Flex, Link, Tooltip, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { LogoIcon } from '@/styles/icons';
 import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
@@ -8,6 +8,10 @@ import { useNavbarColor } from '@/styles/hooks/useNavbarColor';
 export const Navbar = () => {
   const homePageTooltip = 'Go to home page';
   const navbarBg = useNavbarColor();
+  const buttonBg = useColorModeValue('gray.900', 'whiteAlpha.200');
+  const buttonHoverBg = useColorModeValue('gray.700', 'whiteAlpha.300');
+  const buttonActiveBg = useColorModeValue('gray.800', 'whiteAlpha.100');
+  const buttonColor = useColorModeValue('white', 'gray.100');
 
   return (
     <Flex backgroundColor={navbarBg} w="full">
@@ -41,13 +45,13 @@ export const Navbar = () => {
           </NextLink>
           <NextLink href="/login" passHref>
             <Button
-              backgroundColor="gray.900"
-              color="white"
+              backgroundColor={buttonBg}
+              color={buttonColor}
               h="32px"
               fontWeight="medium"
-              _hover={{ bg: 'gray.700' }}
+              _hover={{ bg: buttonHoverBg }}
               _active={{
-                bg: 'gray.800',
+                bg: buttonActiveBg,
                 transform: 'scale(0.95)',
               }}
             >
