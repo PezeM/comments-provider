@@ -4,10 +4,10 @@ import { FeedbackRow } from '@/components/Feedback/FeedbackRow';
 
 export const FeedbackTable = ({ feedbacks }) => {
   return (
-    <Table>
+    <Table w={"full"}>
       <thead>
         <Tr>
-          <Th>Name</Th>
+          <Th minW={"100px"}>Name</Th>
           <Th>Feedback</Th>
           <Th>Route</Th>
           <Th>Visible</Th>

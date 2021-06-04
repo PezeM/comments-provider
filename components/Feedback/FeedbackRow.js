@@ -22,7 +22,15 @@ export const FeedbackRow = ({ feedback }) => {
       <Td fontWeight={'medium'}>{feedback.author}</Td>
       <Td>{feedback.text}</Td>
       <Td>
-        <Code>{feedback.route ?? `/`}</Code>
+        <Code
+          textOverflow={'ellipsis'}
+          whiteSpace={'nowrap'}
+          display={'inherit'}
+          maxW={'150px'}
+          overflow={'hidden'}
+        >
+          {feedback.route ?? `/`}
+        </Code>
       </Td>
       <Td>
         <Switch colorScheme="green" isChecked={isChecked} onChange={onFeedbackToggle} />

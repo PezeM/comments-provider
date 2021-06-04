@@ -1,12 +1,12 @@
 import React from 'react';
-import { Avatar, Box, Button, Flex, Link } from '@chakra-ui/react';
+import { Avatar, Box, Button, Flex, Link, Text } from '@chakra-ui/react';
 import { LogoIcon } from '@/styles/icons';
 import { useAuth } from '@/lib/auth';
 import NextLink from 'next/link';
-import {Footer} from "@/components/Footer";
+import { Footer } from '@/components/Footer';
 
 export const DashboardContainer = ({ children }) => {
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
 
   return (
     <Box backgroundColor="gray.100" h="100vh">
@@ -34,16 +34,14 @@ export const DashboardContainer = ({ children }) => {
             </NextLink>
           </Flex>
 
-          <Flex justifyContent="center" alignItems="center">
-            {user && (
-              <NextLink href="/account" passHref>
-                <Button as="a" variant="ghost" mr={2}>
-                  Account
-                </Button>
-              </NextLink>
-            )}
-            <Avatar size="sm" src={user?.photoUrl} />
-          </Flex>
+          <Box>
+            <NextLink href="/account" passHref>
+              <Link display={"flex"} justifyContent="center" alignItems="center">
+                <Text mr={2}>{user?.name}</Text>
+                <Avatar size="sm" src={user?.photoUrl} />
+              </Link>
+            </NextLink>
+          </Box>
         </Flex>
       </Flex>
 
