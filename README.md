@@ -36,5 +36,4 @@ Check out our [Deployment documentation](https://nextjs.org/docs/deployment) for
 ## TODO
 
 - [ ] Dark theme
-- [ ] Switching dark theme
-= [ ] Color mode manager for SSR
+- [ ] Color mode manager for SSR
