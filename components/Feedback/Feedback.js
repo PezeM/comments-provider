@@ -1,8 +1,10 @@
 import React from 'react';
 import { format, parseISO } from 'date-fns';
-import { Box, Divider, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Code, Divider, Flex, Heading, Text } from '@chakra-ui/react';
 import { GithubIcon, GoogleIcon } from '@/styles/icons';
 import { useEmbedTheme } from '@/utils/useEmbedTheme';
+import ReactMarkdown from 'react-markdown';
+import { MDXComponents } from '@/components/MDXComponents';
 
 const GetProviderLogo = provider => {
   const link = provider.slice(0, -4);
@@ -48,7 +50,30 @@ export const Feedback = ({ author, text, createdAt, provider, isLast, settings }
         </Text>
       )}
 
-      <Text color={textColor[colorMode]}>{text}</Text>
+      <Box color={textColor[colorMode]}>
+        <ReactMarkdown
+          children={text}
+          components={{
+            paragraph: MDXComponents.p,
+            blockquote: MDXComponents.blockquote,
+            link: MDXComponents.a,
+            list: MDXComponents.ul,
+            listItem: MDXComponents.li,
+            table: MDXComponents.table,
+            tableHead: MDXComponents.th,
+            tableCell: MDXComponents.td,
+            code: ({ value }) => (
+              <pre>
+                <Code borderRadius={8} p={4} my={4}>
+                  {value}
+                </Code>
+              </pre>
+            ),
+            inlineCode: MDXComponents.inlineCode,
+          }}
+        />
+      </Box>
+
       {!isLast && (
         <Divider borderColor={dividerColor[colorMode]} backgroundColor="gray.200" mt={6} mb={6} />
       )}
