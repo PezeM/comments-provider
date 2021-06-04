@@ -3,6 +3,7 @@ import { Avatar, Box, Button, Flex, Link } from '@chakra-ui/react';
 import { LogoIcon } from '@/styles/icons';
 import { useAuth } from '@/lib/auth';
 import NextLink from 'next/link';
+import {Footer} from "@/components/Footer";
 
 export const DashboardContainer = ({ children }) => {
   const { user, signOut } = useAuth();
@@ -49,6 +50,7 @@ export const DashboardContainer = ({ children }) => {
       <Flex margin="0 auto" direction="column" maxW="1250px" px={8}>
         {children}
       </Flex>
+      <Footer />
     </Box>
   );
 };

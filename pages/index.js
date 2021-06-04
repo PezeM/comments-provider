@@ -7,6 +7,7 @@ import { Feedback } from '@/components/Feedback/Feedback';
 import { FeedbackLink } from '@/components/Feedback/FeedbackLink';
 import { getAllFeedback, getSite } from '@/lib/database-admin';
 import { LoginButtons } from '@/components/LoginButtons';
+import {Footer} from "@/components/Footer";
 
 const SITE_ID = process.env.NEXT_PUBLIC_HOME_SITE_ID;
 
@@ -113,6 +114,7 @@ export default function Home({ allFeedback, site }) {
           />
         ))}
       </Box>
+      <Footer />
     </>
   );
 }
