@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Th, Tr } from '@/components/Table';
 import { FeedbackRow } from '@/components/Feedback/FeedbackRow';
-import {Box} from "@chakra-ui/react";
+import { Box } from '@chakra-ui/react';
 
 export const FeedbackTable = ({ feedbacks }) => {
   return (

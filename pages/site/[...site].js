@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth';
 import { Feedback } from '@/components/Feedback/Feedback';
 import { Box, Button, FormControl, Textarea } from '@chakra-ui/react';
-import { SiteHeader } from '@/components/SiteHeader';
+import { SiteHeader } from '@/components/Site/SiteHeader';
 import { DashboardContainer } from '@/components/DashboardContainer';
 import { LoginButtons } from '@/components/LoginButtons';
 import useSWR, { mutate } from 'swr';

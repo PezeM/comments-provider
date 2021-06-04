@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Heading, Text } from '@chakra-ui/react';
-import { AddSiteModal } from '@/components/AddSiteModal';
+import { AddSiteModal } from '@/components/Site/AddSiteModal';
 
 export const EmptyDashboardState = () => {
   return (

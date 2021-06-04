@@ -1,5 +1,5 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading } from '@chakra-ui/react';
-import { AddSiteModal } from '@/components/AddSiteModal';
+import { AddSiteModal } from '@/components/Site/AddSiteModal';
 import React from 'react';
 
 export const SiteTableHeader = ({ isPaidAccount }) => {

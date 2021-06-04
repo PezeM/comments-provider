@@ -1,7 +1,7 @@
 import React from 'react';
 import NextLink from 'next/link';
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading } from '@chakra-ui/react';
-import { EditSiteModal } from '@/components/EditSiteModal';
+import { EditSiteModal } from '@/components/Site/EditSiteModal';
 
 export const SiteHeader = ({ isSiteOwner, site, siteId, route }) => {
   const siteName = site?.name;

@@ -4,8 +4,8 @@ import { SiteTableSkeleton } from '@/components/Skeletons/SiteTableSkeleton';
 import { DashboardContainer } from '@/components/DashboardContainer';
 import { fetcher } from '@/utils/fetcher';
 import useSWR from 'swr';
-import { SiteTable } from '@/components/SiteTable';
-import { SiteTableHeader } from '@/components/SiteTableHeader';
+import { SiteTable } from '@/components/Site/SiteTable';
+import { SiteTableHeader } from '@/components/Site/SiteTableHeader';
 import { UpgradeRoleDashboardState } from '@/components/UpgradeRoleDashboardState';
 import { Page } from '@/components/Page';
 
