@@ -7,7 +7,14 @@ export const DocsLayout = ({ children }) => {
   return (
     <>
       <Navbar />
-      <Box maxW="700px" mx="auto" px={8}>
+      <Box
+        maxW="700px"
+        mx="auto"
+        px={8}
+        w={'100%'}
+        overflowWrap={'break-word'}
+        wordBreak={'break-all'}
+      >
         {children}
       </Box>
       <Footer />

@@ -4,7 +4,7 @@ import React from 'react';
 
 export const SiteTableHeader = ({ isPaidAccount }) => {
   return (
-    <Box mx={4}>
+    <Box>
       <Breadcrumb>
         <BreadcrumbItem>
           <BreadcrumbLink>Sites</BreadcrumbLink>

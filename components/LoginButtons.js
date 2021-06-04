@@ -1,5 +1,5 @@
 import { useAuth } from '@/lib/auth';
-import { Button, Stack } from '@chakra-ui/react';
+import { Button, Flex } from '@chakra-ui/react';
 import { GithubIcon, GoogleIcon } from '@/styles/icons';
 import React from 'react';
 
@@ -7,10 +7,11 @@ export const LoginButtons = props => {
   const auth = useAuth();
 
   return (
-    <Stack isInline shouldWrapChildren {...props}>
+    <Flex direction={['column', 'row']} {...props}>
       <Button
         leftIcon={<GithubIcon />}
         mt={4}
+        mr={2}
         size="lg"
         onClick={() => auth.signInWithGithub()}
         backgroundColor={'gray.900'}
@@ -42,6 +43,6 @@ export const LoginButtons = props => {
       >
         Sign in with Google
       </Button>
-    </Stack>
+    </Flex>
   );
 };

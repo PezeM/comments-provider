@@ -9,8 +9,14 @@ export const DashboardContainer = ({ children }) => {
   const { user } = useAuth();
 
   return (
-    <Box backgroundColor="gray.100" h="100vh">
-      <Flex backgroundColor="white" mb={16} w="full">
+    <Box
+      backgroundColor="gray.100"
+      h="100vh"
+      display={'flex'}
+      flexDirection={'column'}
+      justifyContent={'space-between'}
+    >
+      <Flex backgroundColor="white" mb={[8, 16]} w="full">
         <Flex
           alignItems="center"
           justifyContent="space-between"
@@ -36,7 +42,7 @@ export const DashboardContainer = ({ children }) => {
 
           <Box>
             <NextLink href="/account" passHref>
-              <Link display={"flex"} justifyContent="center" alignItems="center">
+              <Link display={'flex'} justifyContent="center" alignItems="center">
                 <Text mr={2}>{user?.name}</Text>
                 <Avatar size="sm" src={user?.photoUrl} />
               </Link>
@@ -45,7 +51,14 @@ export const DashboardContainer = ({ children }) => {
         </Flex>
       </Flex>
 
-      <Flex margin="0 auto" direction="column" maxW="1250px" px={8}>
+      <Flex
+        margin="0 auto"
+        direction="column"
+        maxW="1250px"
+        px={8}
+        width={'100%'}
+        flex={'1 0 auto'}
+      >
         {children}
       </Flex>
       <Footer />

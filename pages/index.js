@@ -7,7 +7,7 @@ import { Feedback } from '@/components/Feedback/Feedback';
 import { FeedbackLink } from '@/components/Feedback/FeedbackLink';
 import { getAllFeedback, getSite } from '@/lib/database-admin';
 import { LoginButtons } from '@/components/LoginButtons';
-import {Footer} from "@/components/Footer";
+import { Footer } from '@/components/Footer';
 
 const SITE_ID = process.env.NEXT_PUBLIC_HOME_SITE_ID;
 
@@ -25,11 +25,11 @@ export async function getStaticProps(context) {
 }
 
 export default function Home({ allFeedback, site }) {
-  const auth = useAuth();
+  const { user, signOut } = useAuth();
 
   return (
     <>
-      <Box bg="gray.100" py={16}>
+      <Box bg="gray.100" py={16} px={4}>
         <Flex as="main" direction="column" maxW="750px" margin="0 auto">
           <Head>
             <script
@@ -55,7 +55,7 @@ export default function Home({ allFeedback, site }) {
             </Text>
           </Center>
 
-          {auth.user ? (
+          {user ? (
             <>
               <Button
                 mt={4}
@@ -76,7 +76,7 @@ export default function Home({ allFeedback, site }) {
               <Button
                 mt={4}
                 size="lg"
-                onClick={() => auth.signOut()}
+                onClick={() => signOut()}
                 backgroundColor={'white'}
                 variant={'outline'}
                 color={'gray.900'}
@@ -91,7 +91,7 @@ export default function Home({ allFeedback, site }) {
               </Button>
             </>
           ) : (
-            <LoginButtons margin={"0 auto"} />
+            <LoginButtons margin={'0 auto'} />
           )}
         </Flex>
       </Box>
@@ -102,7 +102,7 @@ export default function Home({ allFeedback, site }) {
         maxWidth="750px"
         margin="0 auto"
         mt={12}
-        backgroundColor={'white'}
+        px={4}
       >
         <FeedbackLink paths={[SITE_ID]} />
         {allFeedback.map((feedback, index) => (
