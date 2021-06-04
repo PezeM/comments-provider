@@ -1,9 +1,12 @@
 import React from 'react';
-import { Button, Flex, Link } from '@chakra-ui/react';
+import { Button, Flex, Link, Tooltip } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { LogoIcon } from '@/styles/icons';
+import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
 
 export const Navbar = () => {
+  const homePageTooltip = 'Go to home page';
+
   return (
     <Flex backgroundColor="white" mb={4} w="full">
       <Flex
@@ -19,13 +22,16 @@ export const Navbar = () => {
       >
         <Flex align="center">
           <NextLink href="/" passHref>
-            <Link>
-              <LogoIcon color="black" boxSize={6} />
-            </Link>
+            <Tooltip openDelay={500} label={homePageTooltip} aria-label={homePageTooltip}>
+              <Link>
+                <LogoIcon color="black" boxSize={6} />
+              </Link>
+            </Tooltip>
           </NextLink>
         </Flex>
 
         <Flex justifyContent="center" alignItems="center">
+          <ToggleColorModeButton mr={[2, 4]} />
           <NextLink href="/pricing" passHref>
             <Link mr={4} fontWeight="medium">
               Pricing

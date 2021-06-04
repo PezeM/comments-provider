@@ -1,9 +1,20 @@
 import React from 'react';
-import { Avatar, Box, Button, Flex, Link, Text } from '@chakra-ui/react';
+import {
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  IconButton,
+  Link,
+  Text,
+  useColorMode,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { LogoIcon } from '@/styles/icons';
 import { useAuth } from '@/lib/auth';
 import NextLink from 'next/link';
 import { Footer } from '@/components/Footer';
+import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
 
 export const DashboardContainer = ({ children }) => {
   const { user } = useAuth();
@@ -40,14 +51,15 @@ export const DashboardContainer = ({ children }) => {
             </NextLink>
           </Flex>
 
-          <Box>
+          <Flex justifyContent={'center'} alignItems={'center'}>
+            <ToggleColorModeButton mr={[2, 4]} />
             <NextLink href="/account" passHref>
               <Link display={'flex'} justifyContent="center" alignItems="center">
                 <Text mr={2}>{user?.name}</Text>
                 <Avatar size="sm" src={user?.photoUrl} />
               </Link>
             </NextLink>
-          </Box>
+          </Flex>
         </Flex>
       </Flex>
 

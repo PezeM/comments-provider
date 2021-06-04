@@ -18,8 +18,14 @@ const fonts = {
   body: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
 };
 
+const config = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+};
+
 export const theme = extendTheme({
   colors,
   fontWeights,
-  fonts
+  fonts,
+  config,
 });
