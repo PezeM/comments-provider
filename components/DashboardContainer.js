@@ -1,33 +1,27 @@
 import React from 'react';
-import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  IconButton,
-  Link,
-  Text,
-  useColorMode,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Avatar, Box, Flex, Link, Text } from '@chakra-ui/react';
 import { LogoIcon } from '@/styles/icons';
 import { useAuth } from '@/lib/auth';
 import NextLink from 'next/link';
 import { Footer } from '@/components/Footer';
 import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
+import { useBackgroundColor } from '@/styles/hooks/useBackgroundColor';
+import { useNavbarColor } from '@/styles/hooks/useNavbarColor';
 
 export const DashboardContainer = ({ children }) => {
   const { user } = useAuth();
+  const boxBg = useBackgroundColor();
+  const navbarBg = useNavbarColor();
 
   return (
     <Box
-      backgroundColor="gray.100"
+      backgroundColor={boxBg}
       h="100vh"
       display={'flex'}
       flexDirection={'column'}
       justifyContent={'space-between'}
     >
-      <Flex backgroundColor="white" mb={[8, 16]} w="full">
+      <Flex backgroundColor={navbarBg} mb={[8, 16]} w="full" shadow={'sm'}>
         <Flex
           alignItems="center"
           justifyContent="space-between"

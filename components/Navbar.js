@@ -3,12 +3,14 @@ import { Button, Flex, Link, Tooltip } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { LogoIcon } from '@/styles/icons';
 import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
+import { useNavbarColor } from '@/styles/hooks/useNavbarColor';
 
 export const Navbar = () => {
   const homePageTooltip = 'Go to home page';
+  const navbarBg = useNavbarColor();
 
   return (
-    <Flex backgroundColor="white" mb={4} w="full">
+    <Flex backgroundColor={navbarBg} w="full">
       <Flex
         alignItems="center"
         justifyContent="space-between"
