@@ -21,7 +21,7 @@ export const FeedbackLink = ({ paths }) => {
         fontWeight="bold"
         color={linkColor[colorMode]}
         fontSize="sm"
-        href={`/site/${paths?.join('/')}`}
+        href={`/site/${paths.join('/')}`}
         target={'_blank'}
       >
         Leave a comment →
