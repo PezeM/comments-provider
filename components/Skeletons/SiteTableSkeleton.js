@@ -21,23 +21,25 @@ const SkeletonRow = ({ width }) => (
 
 export const SiteTableSkeleton = () => {
   return (
-    <Table>
-      <thead>
-        <Tr>
-          <Th>Name</Th>
-          <Th>Site Link</Th>
-          <Th>Feedback Link</Th>
-          <Th>Date Added</Th>
-          <Th>{''}</Th>
-        </Tr>
-      </thead>
-      <tbody>
-        <SkeletonRow width="75px" />
-        <SkeletonRow width="125px" />
-        <SkeletonRow width="50px" />
-        <SkeletonRow width="100px" />
-        <SkeletonRow width="75px" />
-      </tbody>
-    </Table>
+    <Box overflowX={'auto'}>
+      <Table w={'full'}>
+        <thead>
+          <Tr>
+            <Th>Name</Th>
+            <Th>Site Link</Th>
+            <Th>Feedback Link</Th>
+            <Th>Date Added</Th>
+            <Th>{''}</Th>
+          </Tr>
+        </thead>
+        <tbody>
+          <SkeletonRow width="75px" />
+          <SkeletonRow width="125px" />
+          <SkeletonRow width="50px" />
+          <SkeletonRow width="100px" />
+          <SkeletonRow width="75px" />
+        </tbody>
+      </Table>
+    </Box>
   );
 };
