@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
 import { getAllFeedback, getAllSites, getSite } from '@/lib/database-admin';
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { Feedback } from '@/components/Feedback/Feedback';
 import { FeedbackLink } from '@/components/Feedback/FeedbackLink';
 import 'iframe-resizer/js/iframeResizer.contentWindow';
+import { useEmbedTheme } from '@/utils/useEmbedTheme';
 
 export async function getStaticProps(context) {
   const [siteId, route] = context.params.site;
@@ -35,6 +36,11 @@ export async function getStaticPaths() {
 
 export default function EmbeddedFeedbackPage({ initialFeedback, site }) {
   const router = useRouter();
+  const colorMode = useEmbedTheme();
+  const textColor = {
+    light: 'gray.900',
+    dark: 'gray.200',
+  };
 
   return (
     <Box display="flex" flexDirection="column" width="full">
@@ -49,7 +55,7 @@ export default function EmbeddedFeedbackPage({ initialFeedback, site }) {
           />
         ))
       ) : (
-        <Box>There are no comments for this site.</Box>
+        <Text color={textColor[colorMode]}>There are no comments for this site.</Text>
       )}
     </Box>
   );

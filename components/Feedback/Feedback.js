@@ -2,6 +2,7 @@ import React from 'react';
 import { format, parseISO } from 'date-fns';
 import { Box, Divider, Flex, Heading, Text } from '@chakra-ui/react';
 import { GithubIcon, GoogleIcon } from '@/styles/icons';
+import { useEmbedTheme } from '@/utils/useEmbedTheme';
 
 const GetProviderLogo = provider => {
   const link = provider.slice(0, -4);
@@ -17,10 +18,26 @@ const GetProviderLogo = provider => {
 };
 
 export const Feedback = ({ author, text, createdAt, provider, isLast, settings }) => {
+  const colorMode = useEmbedTheme();
+  const authorColor = {
+    light: 'gray.900',
+    dark: 'gray.200',
+  };
+
+  const textColor = {
+    light: 'gray.800',
+    dark: 'gray.300',
+  };
+
+  const dividerColor = {
+    light: 'gray.200',
+    dark: 'gray.700',
+  };
+
   return (
     <Box borderRadius={4} maxWidth="700px" w="full">
       <Flex align={'center'}>
-        <Heading size="sm" as="h3" mb={0} color="gray.900" fontWeight="medium">
+        <Heading size="sm" as="h3" mb={0} fontWeight="medium" color={authorColor[colorMode]}>
           {author}
         </Heading>
         {settings?.icons && GetProviderLogo(provider)}
@@ -31,8 +48,10 @@ export const Feedback = ({ author, text, createdAt, provider, isLast, settings }
         </Text>
       )}
 
-      <Text color="gray.800">{text}</Text>
-      {!isLast && <Divider borderColor="gray.200" backgroundColor="gray.200" mt={6} mb={6} />}
+      <Text color={textColor[colorMode]}>{text}</Text>
+      {!isLast && (
+        <Divider borderColor={dividerColor[colorMode]} backgroundColor="gray.200" mt={6} mb={6} />
+      )}
     </Box>
   );
 };
