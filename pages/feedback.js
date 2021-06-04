@@ -24,7 +24,11 @@ function MyFeedback() {
   return (
     <DashboardContainer>
       <FeedbackTableHeader />
-      {data.feedback.length ? <FeedbackTable feedbacks={data.feedback} /> : <FeedbackEmptyState />}
+      {data?.feedback?.length ? (
+        <FeedbackTable feedbacks={data.feedback} />
+      ) : (
+        <FeedbackEmptyState />
+      )}
     </DashboardContainer>
   );
 }
