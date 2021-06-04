@@ -5,6 +5,7 @@ import { GithubIcon, GoogleIcon } from '@/styles/icons';
 import { useEmbedTheme } from '@/utils/useEmbedTheme';
 import ReactMarkdown from 'react-markdown';
 import { MDXComponents } from '@/components/MDXComponents';
+import remarkGfm from 'remark-gfm';
 
 const GetProviderLogo = provider => {
   const link = provider.slice(0, -4);
@@ -53,6 +54,7 @@ export const Feedback = ({ author, text, createdAt, provider, isLast, settings }
       <Box color={textColor[colorMode]}>
         <ReactMarkdown
           children={text}
+          remarkPlugins={[remarkGfm]}
           components={{
             paragraph: MDXComponents.p,
             blockquote: MDXComponents.blockquote,
@@ -70,6 +72,7 @@ export const Feedback = ({ author, text, createdAt, provider, isLast, settings }
               </pre>
             ),
             inlineCode: MDXComponents.inlineCode,
+            ...MDXComponents,
           }}
         />
       </Box>
