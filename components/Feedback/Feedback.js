@@ -28,7 +28,7 @@ export const Feedback = ({
   authorEmail,
   isLast,
   settings,
-  colorMode = 'light'
+  colorMode = 'light',
 }) => {
   const authorColor = {
     light: 'gray.900',

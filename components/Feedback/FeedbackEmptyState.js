@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Heading, Text } from '@chakra-ui/react';
-import {useBoxBackgroundColor} from "@/styles/hooks/useBoxBackgroundColor";
+import { useBoxBackgroundColor } from '@/styles/hooks/useBoxBackgroundColor';
 
 export const FeedbackEmptyState = () => {
   const boxBg = useBoxBackgroundColor();
