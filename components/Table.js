@@ -1,52 +1,71 @@
 import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
+import { useBoxBackgroundColor } from '@/styles/hooks/useBoxBackgroundColor';
+import { useNavbarColor } from '@/styles/hooks/useNavbarColor';
+import {useFormBackgroundColor} from "@/styles/hooks/useFormBackgroundColor";
 
-export const Th = props => (
-  <Text
-    as="th"
-    textTransform="uppercase"
-    fontSize="xs"
-    color="gray.500"
-    fontWeight="medium"
-    px={4}
-    {...props}
-  />
-);
+export const Th = props => {
+  const color = useColorModeValue('gray.500', 'gray.400');
 
-export const Td = props => (
-  <Box
-    as="td"
-    color="gray.900"
-    p={4}
-    borderBottom="1px solid"
-    borderBottomColor="gray.100"
-    {...props}
-  />
-);
+  return (
+    <Text
+      as="th"
+      textTransform="uppercase"
+      fontSize="xs"
+      color={color}
+      fontWeight="medium"
+      px={4}
+      {...props}
+    />
+  );
+};
 
-export const Tr = props => (
-  <Box
-    as="tr"
-    backgroundColor="gray.50"
-    borderTopLeftRadius={8}
-    borderTopRightRadius={8}
-    borderBottom="1px solid"
-    borderBottomColor="gray.200"
-    height="40px"
-    {...props}
-  />
-);
+export const Td = props => {
+  const color = useColorModeValue('gray.900', 'gray.50');
+  const borderColor = useColorModeValue('gray.100', 'gray.600');
+
+  return (
+    <Box
+      as="td"
+      color={color}
+      p={4}
+      borderBottom="1px solid"
+      borderBottomColor={borderColor}
+      {...props}
+    />
+  );
+};
+
+export const Tr = props => {
+  const bgColor = useNavbarColor();
+  const borderColor = useColorModeValue('gray.200', 'gray.400');
+
+  return (
+    <Box
+      as="tr"
+      backgroundColor={bgColor}
+      borderTopLeftRadius={8}
+      borderTopRightRadius={8}
+      borderBottom="1px solid"
+      borderBottomColor={borderColor}
+      height="40px"
+      {...props}
+    />
+  );
+};
 
 export const Table = props => {
+  const boxBg = useBoxBackgroundColor();
+
   return (
     <Box
       as="table"
       textAlign="left"
-      backgroundColor="white"
+      backgroundColor={boxBg}
       ml={0}
       mr={0}
       borderRadius={8}
-      boxShadow="0px 4px 10px rgba(0, 0, 0, 0.05)"
+      shadow={'lg'}
       {...props}
     />
   );

@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import { Button, Flex, Heading, Text } from '@chakra-ui/react';
+import { Flex, Heading, Text } from '@chakra-ui/react';
 import { createCheckoutSession } from '@/lib/database';
 import { useAuth } from '@/lib/auth';
 import { MainButton } from '@/components/MainButton';
+import { useBoxBackgroundColor } from '@/styles/hooks/useBoxBackgroundColor';
 
 export const UpgradeRoleDashboardState = () => {
   const { user } = useAuth();
   const [isCheckoutLoading, setCheckoutLoading] = useState(false);
+  const boxBg = useBoxBackgroundColor();
 
   return (
     <Flex
       width="100%"
-      backgroundColor="white"
+      backgroundColor={boxBg}
       borderRadius="8px"
       p={16}
       justify="center"

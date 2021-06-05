@@ -1,8 +1,10 @@
 import { Badge, Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
+import { useNavbarColor } from '@/styles/hooks/useNavbarColor';
+import {useBoxBackgroundColor} from "@/styles/hooks/useBoxBackgroundColor";
 
 export const SettingsTable = ({ stripeRole, children }) => {
-  const boxBg = useColorModeValue('white', 'gray.700');
-  const headerBg = useColorModeValue('gray.50', 'blackAlpha.300');
+  const boxBg = useBoxBackgroundColor();
+  const headerBg = useNavbarColor();
   const settingsTextColor = useColorModeValue('gray.500', 'gray.300');
 
   return (

@@ -1,14 +1,17 @@
 import React from 'react';
 import { Flex, Heading, Text } from '@chakra-ui/react';
 import { AddSiteModal } from '@/components/Site/AddSiteModal';
+import { useBoxBackgroundColor } from '@/styles/hooks/useBoxBackgroundColor';
 
 export const EmptyDashboardState = () => {
+  const boxBg = useBoxBackgroundColor();
+
   return (
     <Flex
       width="100%"
       justify={'center'}
       direction={'column'}
-      backgroundColor="white"
+      background={boxBg}
       borderRadius="8px"
       p={16}
       align={'center'}
