@@ -30,7 +30,7 @@ export const SiteHeader = ({ isSiteOwner, site, siteId, route }) => {
       <Flex justifyContent="space-between">
         <Heading mb={8}>{siteName || '-'}</Heading>
         {isSiteOwner && (
-          <EditSiteModal settings={site?.settings} siteId={siteId}>
+          <EditSiteModal site={site} siteId={siteId}>
             Edit site
           </EditSiteModal>
         )}

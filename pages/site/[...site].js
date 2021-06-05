@@ -1,5 +1,5 @@
 import { createFeedback } from '@/lib/database';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth';
 import { Feedback } from '@/components/Feedback/Feedback';

@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 import { mutate } from 'swr';
-import { useAuth } from '@/lib/auth';
 import {
   Button,
   FormControl,
@@ -21,10 +20,11 @@ import { updateSite } from '@/lib/database';
 import { MainButton } from '@/components/MainButton';
 import React from 'react';
 
-export const EditSiteModal = ({ settings, siteId, children }) => {
+export const EditSiteModal = ({ site, siteId, children }) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { handleSubmit, register } = useForm();
+  const settings = site?.settings;
 
   const onUpdateSite = async newSettings => {
     await updateSite(siteId, {
@@ -39,8 +39,7 @@ export const EditSiteModal = ({ settings, siteId, children }) => {
       isClosable: true,
     });
 
-    await mutate(`/api/sites/${siteId}`);
-    await mutate(`/api/feedback/${siteId}`);
+    await mutate(`/api/site/${siteId}`);
     onClose();
   };
 
