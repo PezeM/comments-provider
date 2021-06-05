@@ -4,6 +4,7 @@ import { useAuth } from '@/lib/auth';
 import React, { useEffect } from 'react';
 import { GithubIcon, GoogleIcon, LogoIcon } from '@/styles/icons';
 import { useRouter } from 'next/router';
+import {useLogoIconColor} from "@/styles/hooks/useLogoIconColor";
 
 const Login = () => {
   const auth = useAuth();
@@ -37,7 +38,7 @@ const Login = () => {
             flexDirection={'row'}
             display={'flex'}
           >
-            <LogoIcon color="black" boxSize={8} mr={4} />
+            <LogoIcon color={useLogoIconColor()} boxSize={8} mr={4} />
             <Text>Back to homepage</Text>
           </Box>
         </Flex>

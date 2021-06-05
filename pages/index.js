@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useAuth } from '@/lib/auth';
-import { Box, Button, Center, Flex, Text } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import { LogoIcon } from '@/styles/icons';
 import React from 'react';
 import { Feedback } from '@/components/Feedback/Feedback';
@@ -8,6 +8,7 @@ import { FeedbackLink } from '@/components/Feedback/FeedbackLink';
 import { getAllFeedback, getSite } from '@/lib/database-admin';
 import { LoginButtons } from '@/components/LoginButtons';
 import { Footer } from '@/components/Footer';
+import { useLogoIconColor } from '@/styles/hooks/useLogoIconColor';
 
 const SITE_ID = process.env.NEXT_PUBLIC_HOME_SITE_ID;
 
@@ -28,7 +29,7 @@ export default function Home({ allFeedback, site }) {
   const { user, signOut } = useAuth();
 
   return (
-    <>
+    <Flex minH={'100vh'} direction={'column'} justifyContent={'column'}>
       <Box bg="gray.100" py={16} px={4}>
         <Flex as="main" direction="column" maxW="750px" margin="0 auto">
           <Head>
@@ -43,15 +44,17 @@ export default function Home({ allFeedback, site }) {
             />
           </Head>
           <Center>
-            <LogoIcon color="black" boxSize={8} mr={8} />
+            <LogoIcon color={'black'} boxSize={8} mr={8} />
           </Center>
 
           <Center>
-            <Text mb={4} fontSize="lg" py={4}>
+            <Text mb={4} fontSize="lg" py={4} color={'black'}>
               <Text as="span" fontWeight="bold" display="inline">
                 Comments provider
               </Text>
-              {' is an application used to inject comments to your site. '}
+              <Text as="span" display="inline">
+                {' is an application used to inject comments to your site.'}
+              </Text>
             </Text>
           </Center>
 
@@ -103,6 +106,7 @@ export default function Home({ allFeedback, site }) {
         margin="0 auto"
         mt={12}
         px={4}
+        flex={'1 0 auto'}
       >
         <FeedbackLink paths={[SITE_ID]} />
         {allFeedback.map((feedback, index) => (
@@ -115,6 +119,6 @@ export default function Home({ allFeedback, site }) {
         ))}
       </Box>
       <Footer />
-    </>
+    </Flex>
   );
 }

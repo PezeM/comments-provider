@@ -4,6 +4,7 @@ import NextLink from 'next/link';
 import { LogoIcon } from '@/styles/icons';
 import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
 import { useNavbarColor } from '@/styles/hooks/useNavbarColor';
+import {useLogoIconColor} from "@/styles/hooks/useLogoIconColor";
 
 export const Navbar = () => {
   const homePageTooltip = 'Go to home page';
@@ -30,7 +31,7 @@ export const Navbar = () => {
           <NextLink href="/" passHref>
             <Tooltip openDelay={500} label={homePageTooltip} aria-label={homePageTooltip}>
               <Link>
-                <LogoIcon color="black" boxSize={6} />
+                <LogoIcon color={useLogoIconColor()} boxSize={6} />
               </Link>
             </Tooltip>
           </NextLink>

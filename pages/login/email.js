@@ -14,6 +14,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '@/lib/auth';
 import React, { useState } from 'react';
 import { LogoIcon } from '@/styles/icons';
+import { useLogoIconColor } from '@/styles/hooks/useLogoIconColor';
 
 const EmailLogin = () => {
   const toast = useToast();
@@ -56,7 +57,7 @@ const EmailLogin = () => {
       >
         <Flex justify="center">
           <Box as="a" href="/" aria-label="Back to homepage">
-            <LogoIcon color="black" boxSize={8} />
+            <LogoIcon color={useLogoIconColor()} boxSize={8} />
           </Box>
         </Flex>
 

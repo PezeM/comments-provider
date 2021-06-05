@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
 import { useBackgroundColor } from '@/styles/hooks/useBackgroundColor';
 import { useNavbarColor } from '@/styles/hooks/useNavbarColor';
+import {useLogoIconColor} from "@/styles/hooks/useLogoIconColor";
 
 export const DashboardContainer = ({ children }) => {
   const { user } = useAuth();
@@ -35,7 +36,7 @@ export const DashboardContainer = ({ children }) => {
         >
           <Flex>
             <NextLink href={'/'} passHref>
-              <LogoIcon color="black" boxSize={6} mr={8} />
+              <LogoIcon color={useLogoIconColor()} boxSize={6} mr={8} />
             </NextLink>
             <NextLink href={'/sites'} passHref>
               <Link mr={4}>Sites</Link>
