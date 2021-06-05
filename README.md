@@ -35,6 +35,5 @@ Check out our [Deployment documentation](https://nextjs.org/docs/deployment) for
 
 ## TODO
 
-- [ ] Color mode manager for SSR
 - [ ] Enable nextjs built in eslint
 - [ ] Link to profile by clicking on name

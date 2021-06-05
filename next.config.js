@@ -7,4 +7,5 @@ module.exports = withMDX({
   future: {
     webpack5: true,
   },
+  reactStrictMode: true,
 });

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useAuth } from '@/lib/auth';
-import {Box, Button, Center, Flex, Text, useColorMode} from '@chakra-ui/react';
+import { Box, Button, Center, Flex, Text, useColorMode } from '@chakra-ui/react';
 import { LogoIcon } from '@/styles/icons';
 import React from 'react';
 import { Feedback } from '@/components/Feedback/Feedback';
