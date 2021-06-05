@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth';
 import { Feedback } from '@/components/Feedback/Feedback';
-import { Box, FormControl, Textarea, useColorMode } from '@chakra-ui/react';
+import { Box, FormControl, Textarea, useColorMode, useToast } from '@chakra-ui/react';
 import { SiteHeader } from '@/components/Site/SiteHeader';
 import { DashboardContainer } from '@/components/DashboardContainer';
 import { LoginButtons } from '@/components/LoginButtons';
@@ -14,6 +14,8 @@ import { MainButton } from '@/components/MainButton';
 export default function FeedbackPage() {
   const { user, loading } = useAuth();
   const { colorMode } = useColorMode();
+  const toast = useToast();
+
   const router = useRouter();
   const inputRef = useRef(null);
   const siteAndRoute = router.query?.site;
@@ -38,6 +40,7 @@ export default function FeedbackPage() {
       route: route ?? '/',
       author: user.name,
       authorId: user.uid,
+      authorEmail: user.email,
       text,
       createdAt: new Date().toISOString(),
       provider: user.provider,
@@ -46,13 +49,15 @@ export default function FeedbackPage() {
 
     inputRef.current.value = '';
     await createFeedback(newFeedback);
-    await mutate(
-      feedbackApi,
-      async data => ({
-        feedback: [newFeedback, ...data.feedback],
-      }),
-      false,
-    );
+    await mutate(feedbackApi);
+
+    toast({
+      title: 'Success!',
+      description: `Added new comment. Must be approved to be visible.`,
+      status: 'success',
+      duration: 4000,
+      isClosable: true,
+    });
   };
 
   const LoginOrLeaveFeedback = () =>

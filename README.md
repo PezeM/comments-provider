@@ -36,4 +36,3 @@ Check out our [Deployment documentation](https://nextjs.org/docs/deployment) for
 ## TODO
 
 - [ ] Enable nextjs built in eslint
-- [ ] Link to profile by clicking on name

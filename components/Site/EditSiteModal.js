@@ -40,6 +40,7 @@ export const EditSiteModal = ({ settings, siteId, children }) => {
     });
 
     await mutate(`/api/sites/${siteId}`);
+    await mutate(`/api/feedback/${siteId}`);
     onClose();
   };
 

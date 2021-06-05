@@ -5,6 +5,7 @@ import { GithubIcon, GoogleIcon } from '@/styles/icons';
 import ReactMarkdown from 'react-markdown';
 import { MDXComponents } from '@/components/MDXComponents';
 import remarkGfm from 'remark-gfm';
+import { FeedbackAuthor } from '@/components/Feedback/FeedbackAuthor';
 
 const GetProviderLogo = provider => {
   const link = provider.slice(0, -4);
@@ -24,9 +25,10 @@ export const Feedback = ({
   text,
   createdAt,
   provider,
+  authorEmail,
   isLast,
   settings,
-  colorMode = 'light',
+  colorMode = 'light'
 }) => {
   const authorColor = {
     light: 'gray.900',
@@ -46,9 +48,12 @@ export const Feedback = ({
   return (
     <Box borderRadius={4} maxWidth="700px" w="full">
       <Flex align={'center'}>
-        <Heading size="sm" as="h3" mb={0} fontWeight="medium" color={authorColor[colorMode]}>
-          {author}
-        </Heading>
+        <FeedbackAuthor
+          color={authorColor[colorMode]}
+          email={authorEmail}
+          provider={provider}
+          authorName={author}
+        />
         {settings?.icons && GetProviderLogo(provider)}
       </Flex>
       {settings?.timestamp && (
