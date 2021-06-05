@@ -7,7 +7,7 @@ import { Footer } from '@/components/Footer';
 import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
 import { useBackgroundColor } from '@/styles/hooks/useBackgroundColor';
 import { useNavbarColor } from '@/styles/hooks/useNavbarColor';
-import {useLogoIconColor} from "@/styles/hooks/useLogoIconColor";
+import { useLogoIconColor } from '@/styles/hooks/useLogoIconColor';
 
 export const DashboardContainer = ({ children }) => {
   const { user } = useAuth();
@@ -17,7 +17,7 @@ export const DashboardContainer = ({ children }) => {
   return (
     <Box
       backgroundColor={boxBg}
-      h="100vh"
+      minH="100vh"
       display={'flex'}
       flexDirection={'column'}
       justifyContent={'space-between'}

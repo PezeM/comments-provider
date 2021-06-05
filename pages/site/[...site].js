@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth';
 import { Feedback } from '@/components/Feedback/Feedback';
-import { Box, Button, FormControl, Textarea } from '@chakra-ui/react';
+import { Box, Button, FormControl, Textarea, useColorMode } from '@chakra-ui/react';
 import { SiteHeader } from '@/components/Site/SiteHeader';
 import { DashboardContainer } from '@/components/DashboardContainer';
 import { LoginButtons } from '@/components/LoginButtons';
@@ -12,6 +12,7 @@ import { fetcher } from '@/utils/fetcher';
 
 export default function FeedbackPage() {
   const { user, loading } = useAuth();
+  const { colorMode } = useColorMode();
   const router = useRouter();
   const inputRef = useRef(null);
   const siteAndRoute = router.query?.site;
@@ -108,6 +109,7 @@ export default function FeedbackPage() {
               key={feedback.id}
               settings={site?.settings}
               isLast={index === allFeedback.length - 1}
+              colorMode={colorMode}
               {...feedback}
             />
           ))}

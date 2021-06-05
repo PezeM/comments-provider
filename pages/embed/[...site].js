@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { getAllFeedback, getAllSites, getSite } from '@/lib/database-admin';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, color, Text, useColorMode } from '@chakra-ui/react';
 import { Feedback } from '@/components/Feedback/Feedback';
 import { FeedbackLink } from '@/components/Feedback/FeedbackLink';
 import 'iframe-resizer/js/iframeResizer.contentWindow';
@@ -36,7 +36,8 @@ export async function getStaticPaths() {
 
 export default function EmbeddedFeedbackPage({ initialFeedback, site }) {
   const router = useRouter();
-  const colorMode = useEmbedTheme();
+  const embedColorMode = useEmbedTheme();
+
   const textColor = {
     light: 'gray.900',
     dark: 'gray.200',
@@ -44,18 +45,19 @@ export default function EmbeddedFeedbackPage({ initialFeedback, site }) {
 
   return (
     <Box display="flex" flexDirection="column" width="full">
-      <FeedbackLink paths={router?.query?.site ?? []} />
+      <FeedbackLink paths={router?.query?.site ?? []} colorMode={embedColorMode} />
       {initialFeedback?.length ? (
         initialFeedback.map((feedback, index) => (
           <Feedback
             key={feedback.id}
             settings={site?.settings}
             isLast={index === initialFeedback.length - 1}
+            colorMode={embedColorMode}
             {...feedback}
           />
         ))
       ) : (
-        <Text color={textColor[colorMode]}>There are no comments for this site.</Text>
+        <Text color={textColor[embedColorMode]}>There are no comments for this site.</Text>
       )}
     </Box>
   );

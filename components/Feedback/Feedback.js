@@ -2,7 +2,6 @@ import React from 'react';
 import { format, parseISO } from 'date-fns';
 import { Box, Code, Divider, Flex, Heading, Text } from '@chakra-ui/react';
 import { GithubIcon, GoogleIcon } from '@/styles/icons';
-import { useEmbedTheme } from '@/utils/useEmbedTheme';
 import ReactMarkdown from 'react-markdown';
 import { MDXComponents } from '@/components/MDXComponents';
 import remarkGfm from 'remark-gfm';
@@ -20,8 +19,15 @@ const GetProviderLogo = provider => {
   }
 };
 
-export const Feedback = ({ author, text, createdAt, provider, isLast, settings }) => {
-  const colorMode = useEmbedTheme();
+export const Feedback = ({
+  author,
+  text,
+  createdAt,
+  provider,
+  isLast,
+  settings,
+  colorMode = 'light',
+}) => {
   const authorColor = {
     light: 'gray.900',
     dark: 'gray.200',

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useAuth } from '@/lib/auth';
-import { Box, Button, Center, Flex, Text, useColorModeValue } from '@chakra-ui/react';
+import {Box, Button, Center, Flex, Text, useColorMode} from '@chakra-ui/react';
 import { LogoIcon } from '@/styles/icons';
 import React from 'react';
 import { Feedback } from '@/components/Feedback/Feedback';
@@ -8,7 +8,6 @@ import { FeedbackLink } from '@/components/Feedback/FeedbackLink';
 import { getAllFeedback, getSite } from '@/lib/database-admin';
 import { LoginButtons } from '@/components/LoginButtons';
 import { Footer } from '@/components/Footer';
-import { useLogoIconColor } from '@/styles/hooks/useLogoIconColor';
 
 const SITE_ID = process.env.NEXT_PUBLIC_HOME_SITE_ID;
 
@@ -27,6 +26,7 @@ export async function getStaticProps(context) {
 
 export default function Home({ allFeedback, site }) {
   const { user, signOut } = useAuth();
+  const { colorMode } = useColorMode();
 
   return (
     <Flex minH={'100vh'} direction={'column'} justifyContent={'column'}>
@@ -108,12 +108,13 @@ export default function Home({ allFeedback, site }) {
         px={4}
         flex={'1 0 auto'}
       >
-        <FeedbackLink paths={[SITE_ID]} />
+        <FeedbackLink paths={[SITE_ID]} colorMode={colorMode} />
         {allFeedback.map((feedback, index) => (
           <Feedback
             key={feedback.id}
             settings={site?.settings}
             isLast={index === allFeedback.length - 1}
+            colorMode={colorMode}
             {...feedback}
           />
         ))}

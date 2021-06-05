@@ -1,8 +1,6 @@
 import { Flex, Link } from '@chakra-ui/react';
-import { useEmbedTheme } from '@/utils/useEmbedTheme';
 
-export const FeedbackLink = ({ paths }) => {
-  const colorMode = useEmbedTheme();
+export const FeedbackLink = ({ paths, colorMode = 'light' }) => {
   const linkColor = {
     light: 'gray.900',
     dark: 'gray.100',
