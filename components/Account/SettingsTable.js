@@ -1,15 +1,14 @@
-import { Badge, Box, Flex, Text } from '@chakra-ui/react';
+import { Badge, Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 
 export const SettingsTable = ({ stripeRole, children }) => {
+  const boxBg = useColorModeValue('white', 'gray.700');
+  const headerBg = useColorModeValue('gray.50', 'blackAlpha.300');
+  const settingsTextColor = useColorModeValue('gray.500', 'gray.300');
+
   return (
-    <Box
-      backgroundColor="white"
-      mt={8}
-      borderRadius={[0, 8, 8]}
-      boxShadow="0px 4px 10px rgba(0, 0, 0, 0.05)"
-    >
+    <Box backgroundColor={boxBg} mt={8} borderRadius={[0, 8, 8]} shadow={'lg'}>
       <Flex
-        backgroundColor="gray.50"
+        backgroundColor={headerBg}
         borderTopLeftRadius={[0, 8, 8]}
         borderTopRightRadius={[0, 8, 8]}
         borderBottom="1px solid"
@@ -18,7 +17,13 @@ export const SettingsTable = ({ stripeRole, children }) => {
         py={4}
       >
         <Flex justify="space-between" align="center" w="full">
-          <Text textTransform="uppercase" fontSize="xs" color="gray.500" fontWeight="medium" mt={1}>
+          <Text
+            textTransform="uppercase"
+            color={settingsTextColor}
+            fontSize="xs"
+            fontWeight="medium"
+            mt={1}
+          >
             Settings
           </Text>
           <Badge h="1rem" colorScheme={'blue'}>

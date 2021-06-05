@@ -1,7 +1,6 @@
 import { Page } from '@/components/Page';
 import {
   Box,
-  Button,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -15,12 +14,17 @@ import { useAuth } from '@/lib/auth';
 import React, { useState } from 'react';
 import { LogoIcon } from '@/styles/icons';
 import { useLogoIconColor } from '@/styles/hooks/useLogoIconColor';
+import { MainButton } from '@/components/MainButton';
+import {useBackgroundColor} from "@/styles/hooks/useBackgroundColor";
+import {useFormBackgroundColor} from "@/styles/hooks/useFormBackgroundColor";
 
 const EmailLogin = () => {
   const toast = useToast();
   const [loading, setLoading] = useState(false);
   const { signinWithEmail } = useAuth();
   const { handleSubmit, register, errors } = useForm();
+  const bgColor = useBackgroundColor();
+  const formBgColor = useFormBackgroundColor();
 
   const onLogin = async ({ email, pass }) => {
     setLoading(true);
@@ -41,10 +45,10 @@ const EmailLogin = () => {
   };
 
   return (
-    <Flex align="center" justify="center" h="100vh" backgroundColor="gray.100">
+    <Flex align="center" justify="center" h="100vh" background={bgColor}>
       <Stack
         as="form"
-        backgroundColor="white"
+        backgroundColor={formBgColor}
         borderRadius={[0, 8]}
         errors={errors}
         maxWidth="400px"
@@ -53,6 +57,7 @@ const EmailLogin = () => {
         py={12}
         shadow={[null, 'md']}
         spacing={4}
+        m={[4, 8]}
         w="100%"
       >
         <Flex justify="center">
@@ -90,24 +95,9 @@ const EmailLogin = () => {
           <FormErrorMessage>{errors?.pass && errors.pass?.message}</FormErrorMessage>
         </FormControl>
 
-        <Button
-          id="login"
-          type="submit"
-          backgroundColor="gray.900"
-          color="white"
-          isLoading={loading}
-          fontWeight="medium"
-          mt={4}
-          h="50px"
-          fontSize="lg"
-          _hover={{ bg: 'gray.700' }}
-          _active={{
-            bg: 'gray.800',
-            transform: 'scale(0.95)',
-          }}
-        >
+        <MainButton id="login" type="submit" isLoading={loading} mt={4} h="50px" fontSize="lg">
           Login
-        </Button>
+        </MainButton>
       </Stack>
     </Flex>
   );

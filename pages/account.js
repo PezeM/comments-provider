@@ -5,6 +5,7 @@ import { Avatar, Button, Flex, Heading, Text } from '@chakra-ui/react';
 import { FeedbackUsage } from '@/components/Account/FeedbackUsage';
 import { SettingsTable } from '@/components/Account/SettingsTable';
 import { Page } from '@/components/Page';
+import { MainButton } from '@/components/MainButton';
 
 function Account() {
   const { user, signOut } = useAuth();
@@ -28,24 +29,16 @@ function Account() {
             <Button variant="ghost" ml={4} onClick={() => signOut()}>
               Sign out
             </Button>
-            <Button
+            <MainButton
               onClick={() => {
                 setBillingLoading(true);
                 // goToBillingPortal();
               }}
-              backgroundColor="gray.900"
-              color="white"
-              fontWeight="medium"
               ml={4}
               isLoading={isBillingLoading}
-              _hover={{ bg: 'gray.700' }}
-              _active={{
-                bg: 'gray.800',
-                transform: 'scale(0.95)',
-              }}
             >
               Manage billing
-            </Button>
+            </MainButton>
           </Flex>
         </SettingsTable>
       </Flex>

@@ -18,6 +18,8 @@ import {
 } from '@chakra-ui/react';
 import { SettingsIcon } from '@chakra-ui/icons';
 import { updateSite } from '@/lib/database';
+import { MainButton } from '@/components/MainButton';
+import React from 'react';
 
 export const EditSiteModal = ({ settings, siteId, children }) => {
   const toast = useToast();
@@ -43,21 +45,9 @@ export const EditSiteModal = ({ settings, siteId, children }) => {
 
   return (
     <>
-      <Button
-        onClick={onOpen}
-        backgroundColor="gray.900"
-        color="white"
-        fontWeight="medium"
-        leftIcon={<SettingsIcon />}
-        _hover={{ bg: 'gray.700' }}
-        _active={{
-          bg: 'gray.800',
-          transform: 'scale(0.95)',
-        }}
-      >
+      <MainButton leftIcon={<SettingsIcon />} onClick={onOpen}>
         {children}
-      </Button>
-
+      </MainButton>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent as="form" onSubmit={handleSubmit(onUpdateSite)}>

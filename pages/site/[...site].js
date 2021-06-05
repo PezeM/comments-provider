@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth';
 import { Feedback } from '@/components/Feedback/Feedback';
-import { Box, Button, FormControl, Input, Textarea, useColorMode } from '@chakra-ui/react';
+import { Box, FormControl, Textarea, useColorMode } from '@chakra-ui/react';
 import { SiteHeader } from '@/components/Site/SiteHeader';
 import { DashboardContainer } from '@/components/DashboardContainer';
 import { LoginButtons } from '@/components/LoginButtons';

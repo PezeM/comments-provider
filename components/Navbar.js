@@ -4,7 +4,8 @@ import NextLink from 'next/link';
 import { LogoIcon } from '@/styles/icons';
 import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
 import { useNavbarColor } from '@/styles/hooks/useNavbarColor';
-import {useLogoIconColor} from "@/styles/hooks/useLogoIconColor";
+import { useLogoIconColor } from '@/styles/hooks/useLogoIconColor';
+import { MainButton } from '@/components/MainButton';
 
 export const Navbar = () => {
   const homePageTooltip = 'Go to home page';
@@ -12,7 +13,6 @@ export const Navbar = () => {
   const buttonBg = useColorModeValue('gray.900', 'whiteAlpha.200');
   const buttonHoverBg = useColorModeValue('gray.700', 'whiteAlpha.300');
   const buttonActiveBg = useColorModeValue('gray.800', 'whiteAlpha.100');
-  const buttonColor = useColorModeValue('white', 'gray.100');
 
   return (
     <Flex backgroundColor={navbarBg} w="full">
@@ -45,19 +45,16 @@ export const Navbar = () => {
             </Link>
           </NextLink>
           <NextLink href="/login" passHref>
-            <Button
-              backgroundColor={buttonBg}
-              color={buttonColor}
+            <MainButton
               h="32px"
-              fontWeight="medium"
+              backgroundColor={buttonBg}
               _hover={{ bg: buttonHoverBg }}
               _active={{
                 bg: buttonActiveBg,
-                transform: 'scale(0.95)',
               }}
             >
               Login
-            </Button>
+            </MainButton>
           </NextLink>
         </Flex>
       </Flex>

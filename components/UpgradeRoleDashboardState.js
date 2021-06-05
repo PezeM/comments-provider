@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Flex, Heading, Text } from '@chakra-ui/react';
 import { createCheckoutSession } from '@/lib/database';
 import { useAuth } from '@/lib/auth';
+import { MainButton } from '@/components/MainButton';
 
 export const UpgradeRoleDashboardState = () => {
   const { user } = useAuth();
@@ -21,24 +22,16 @@ export const UpgradeRoleDashboardState = () => {
         Add ability to add comments to your site.
       </Heading>
       <Text mb={4}>"This site is an demo and billing is currently disabled"</Text>
-      <Button
+      <MainButton
         onClick={() => {
           setCheckoutLoading(true);
           // createCheckoutSession(user.uid);
         }}
-        backgroundColor="gray.900"
-        color="white"
-        fontWeight="medium"
         mt={4}
         isLoading={isCheckoutLoading}
-        _hover={{ bg: 'gray.700' }}
-        _active={{
-          bg: 'gray.800',
-          transform: 'scale(0.95)',
-        }}
       >
         Upgrade to basic plan
-      </Button>
+      </MainButton>
     </Flex>
   );
 };

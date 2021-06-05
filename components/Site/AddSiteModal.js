@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   Button,
   FormControl,
@@ -18,6 +18,7 @@ import { useForm } from 'react-hook-form';
 import { createSite } from '@/lib/database';
 import { useAuth } from '@/lib/auth';
 import { mutate } from 'swr';
+import { MainButton } from '@/components/MainButton';
 
 export const AddSiteModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -53,19 +54,7 @@ export const AddSiteModal = ({ children }) => {
 
   return (
     <>
-      <Button
-        backgroundColor={'gray.900'}
-        color={'white'}
-        fontWeight={'medium'}
-        _hover={{ bg: 'gray.700' }}
-        _active={{
-          bg: 'gray.800',
-          transform: 'scale(0.95)',
-        }}
-        onClick={onOpen}
-      >
-        {children}
-      </Button>
+      <MainButton onClick={onOpen}>{children}</MainButton>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent as="form" onSubmit={handleSubmit(onCreateSite)}>
