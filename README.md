@@ -37,3 +37,5 @@ Check out our [Deployment documentation](https://nextjs.org/docs/deployment) for
 
 - [ ] Dark theme
 - [ ] Color mode manager for SSR
+- [ ] Enable nextjs built in eslint
+- [ ] Enable webpack5
