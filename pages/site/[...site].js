@@ -3,12 +3,13 @@ import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth';
 import { Feedback } from '@/components/Feedback/Feedback';
-import { Box, Button, FormControl, Textarea, useColorMode } from '@chakra-ui/react';
+import { Box, Button, FormControl, Input, Textarea, useColorMode } from '@chakra-ui/react';
 import { SiteHeader } from '@/components/Site/SiteHeader';
 import { DashboardContainer } from '@/components/DashboardContainer';
 import { LoginButtons } from '@/components/LoginButtons';
 import useSWR, { mutate } from 'swr';
 import { fetcher } from '@/utils/fetcher';
+import { MainButton } from '@/components/MainButton';
 
 export default function FeedbackPage() {
   const { user, loading } = useAuth();
@@ -28,6 +29,8 @@ export default function FeedbackPage() {
 
   const onSubmit = async e => {
     e.preventDefault();
+    let text = inputRef.current.value?.trim();
+    if (!text) return;
 
     const newFeedback = {
       siteId,
@@ -35,7 +38,7 @@ export default function FeedbackPage() {
       route: route ?? '/',
       author: user.name,
       authorId: user.uid,
-      text: inputRef.current.value,
+      text,
       createdAt: new Date().toISOString(),
       provider: user.provider,
       status: 'pending',
@@ -54,21 +57,9 @@ export default function FeedbackPage() {
 
   const LoginOrLeaveFeedback = () =>
     user ? (
-      <Button
-        type="submit"
-        isDisabled={!siteData || !feedbackData}
-        backgroundColor="gray.900"
-        color="white"
-        fontWeight="medium"
-        mt={4}
-        _hover={{ bg: 'gray.700' }}
-        _active={{
-          bg: 'gray.800',
-          transform: 'scale(0.95)',
-        }}
-      >
+      <MainButton type="submit" isDisabled={!siteData || !feedbackData} mt={4}>
         Add comment
-      </Button>
+      </MainButton>
     ) : (
       <LoginButtons />
     );
