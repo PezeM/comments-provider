@@ -22,7 +22,7 @@
     "framer-motion": "4",
     "iframe-resizer": "^4.3.2",
     "js-cookie": "^2.2.1",
-    "next": "10.x",
+    "next": "11.x",
     "next-seo": "^4.24.0",
     "pino": "^6.11.3",
     "pino-logflare": "^0.3.8",
